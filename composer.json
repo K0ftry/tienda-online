@@ -1,0 +1,20 @@
+{
+    "name": "tienda/tienda-online",
+    "description": "creacion de una tienda online",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "erick sepulveda erices",
+            "email": "ericksepulveda94@hotmail.com"
+        }
+    ],
+    "require": {
+        
+    },
+    "autoload": {
+        "psr-4": {
+            "Tienda\\":"src/"
+        }
+    }
+}
