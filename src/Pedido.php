@@ -52,7 +52,7 @@ class Pedido{
         return false;
     }
     public function mostrar(){
-        $sql = "SELECT p.id,nombres,apellidos,email,total,fecha FROM pedidos p
+        $sql = "SELECT p.id,nombres,apellidos,email,total,fecha,entregado FROM pedidos p
         INNER JOIN clientes c ON p.cliente_id = c.id ORDER BY p.id DESC";
 
         $resultado = $this->cn->prepare($sql);
@@ -107,4 +107,39 @@ class Pedido{
 
         return false;
     } 
+
+    public function actualizarEntregado($_id, $_entregado){
+
+        if($_entregado == 1){
+            $sql = "UPDATE `pedidos` SET `entregado`=:entregado WHERE `id`=:id";
+
+            $resultado = $this->cn->prepare($sql);
+
+        $_array = array(
+            ":entregado" =>0,
+            ":id" => $_id
+        );
+
+        if($resultado->execute($_array))
+            return true;
+
+        return false;
+        }else{
+            $sql = "UPDATE `pedidos` SET `entregado`=:entregado WHERE `id`=:id";
+
+            $resultado = $this->cn->prepare($sql);
+
+        $_array2 = array(
+            ":entregado" =>1,
+            ":id" => $_id
+        );
+
+        if($resultado->execute($_array2))
+            return true;
+
+        return false;
+        }
+
+        
+    }
 }

@@ -20,6 +20,8 @@ if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../assets/css/estilos.css">
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
   </head>
 
   <body>
@@ -61,10 +63,12 @@ if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
     </nav>
 
     <div class="container" id="main">
+    
     <div class="row">
         <div class="col-md-12">
           <fieldset>
             <legend>Listado de pedidos</legend>
+            
             <table class="table table-bordered">
               <thead>
                 <tr>
@@ -73,6 +77,7 @@ if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
                   <th>N° de pedido</th>
                   <th>Total</th>
                   <th>Fecha</th>
+                  <th>Entregado</th>
                   <th></th>
                 </tr>
               </thead>
@@ -91,17 +96,42 @@ if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
                 ?>
 
                 <tr>
+                <form action="../accion_pedidos.php" method="POST" enctype="multipart/form-data" name="form">
                   <td><?php print $c?></td>
                   <td><?php print $item['nombres'].' '.$item['apellidos']?></td>
-                  <td><?php print $item['id']?></td>
+                  <td>
+                    <?php print $item['id']?>
+                    <input type="hidden" name="id" value="<?php print $item['id'] ?>">
+                  </td>
                   <td><?php print $item['total']?> CLP</td>
                   <td><?php print $item['fecha']?></td>
+                  <td class="text-center">
+                   <input type="hidden" name="estado" value="<?php print $item['entregado'] ?>">
+                    <span>
+                    <?php if ($item['entregado'] == 1 ){
+                               print "✔Sí";
+                           }else{
+                               print "No";
+                               }
+                     ?>
+                    </span>
+                           <button type="submit">
+                           <i class="fas fa-exchange-alt"></i>
+                           </button>
+                      
+                    
+                  <!-- <input type="checkbox" checked data-toggle="toggle" data-on="Sí" data-off="No" data-onstyle="success" data-offstyle="danger" data-size="mini"> -->
+                      
+                  </td>
                   
                   <td class="text-center">
                     <a href="ver.php?id=<?php print $item['id']?>" class="btn btn-primary btn-sm">
                     <span class="glyphicon glyphicon-eye-open"> </span></a>
                     
                  </td>
+                           
+
+                 </form>
                 </tr>
 
                   <?php
@@ -116,13 +146,14 @@ if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
 
                     <?php }?>
 
-                  
-
               </tbody>
             </table>
           </fieldset>
         </div>
      </div> 
+
+     
+    
     </div> <!-- /container -->
 
 
@@ -131,6 +162,7 @@ if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="../../assets/js/jquery.min.js"></script>
     <script src="../../assets/js/bootstrap.min.js"></script>
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
   </body>
 </html>

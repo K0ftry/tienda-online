@@ -68,6 +68,7 @@ require 'funciones.php';
            <?php }else{ ?>
               <img src="assets/imagenes/not-found.jpg" class="img-responsive">
              <?php } ?>
+             <h4 class="text-center">Precio: $<?php print $item['precio'] ?></h6>
             </div>
             <div class="panel-footer" >
                   <a href="carrito.php?id=<?php print $item['id'] ?>" class="btn btn-success btn-block" >

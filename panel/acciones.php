@@ -72,8 +72,7 @@ if($_SERVER['REQUEST_METHOD'] ==='POST'){
                 header('Location: productos/index.php');
              else
                  print 'Error al actualizar producto'; 
-    
-}
+ }
 }
 
 if($_SERVER['REQUEST_METHOD'] ==='GET'){
@@ -95,3 +94,4 @@ function subirFoto(){
 
     return $_FILES['foto']['name'];
 }
+

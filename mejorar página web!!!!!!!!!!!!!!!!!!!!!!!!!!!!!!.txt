@@ -1,0 +1,5 @@
+Reunión próximo jueves, implementar:
+
+- Buscador de pedidos
+- Login de usuarios
+- Estado de productos (retirado o no)
