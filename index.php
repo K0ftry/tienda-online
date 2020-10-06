@@ -17,6 +17,8 @@ require 'funciones.php';
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/estilos.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+
   </head>
 
   <body>
@@ -37,6 +39,21 @@ require 'funciones.php';
           <ul class="nav navbar-nav pull-right">
             <li>
               <a href="carrito.php" class="btn">CARRITO <span class="badge"><?php print cantidadProductos(); ?></span></a>
+            </li> 
+            <li>
+              <?php 
+              if(isset($_SESSION['cliente_info']) AND !empty($_SESSION['cliente_info'])){
+              ?>
+              <li class="dropdown">
+             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" 
+             aria-haspopup="true" aria-expanded="false"><?php print $_SESSION['cliente_info']['nombre_cliente']; ?><span class="caret"></span></a>
+             <ul class="dropdown-menu">
+                 <li><a href="clientes/cerrar_session.php">Salir</a></li>
+             </ul>
+            </li>
+              <?php }else{ ?>
+              <a href="clientes/index.php" class="btn" ><i class="far fa-user"></i></a>
+              <?php } ?>
             </li> 
           </ul>
         </div><!--/.nav-collapse -->
