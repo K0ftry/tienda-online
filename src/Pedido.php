@@ -16,7 +16,7 @@ class Pedido{
             \PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'
         ));
     }
-    public function registrar($_params){
+    public function registrar($_params){ 
         $sql = "INSERT INTO `pedidos`(`cliente_id`, `total`, `fecha`) 
         VALUES (:cliente_id,:total,:fecha)";
 

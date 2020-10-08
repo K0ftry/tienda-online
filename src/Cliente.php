@@ -38,7 +38,7 @@ class Cliente{
 
     public function login($correo, $clave){
 
-        $sql="SELECT nombres FROM `clientes` WHERE email = :email AND clave = :clave";
+        $sql="SELECT id,nombres FROM `clientes` WHERE email = :email AND clave = :clave";
         $resultado = $this->cn->prepare($sql);
 
         $_array = array(

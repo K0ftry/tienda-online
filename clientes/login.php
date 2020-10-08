@@ -12,6 +12,7 @@ if($_SERVER['REQUEST_METHOD'] ==='POST'){
     if($resultado){
         session_start();
         $_SESSION['cliente_info'] = array(
+            'id_cliente' => $resultado['id'],
             'nombre_cliente'=>$resultado['nombres'],
             'estado'=>1
         );

@@ -155,7 +155,14 @@ if(isset($_SESSION['carrito'])){
           <a href="index.php" class="btn btn-info" >Seguir comprando</a>
         </div>
         <div class="pull-right" >
-        <a href="finalizar.php" class="btn btn-success" >Finalizar compra</a>
+        <a href="
+        <?php if(isset($_SESSION['cliente_info']) && !empty($_SESSION['cliente_info'])){
+          print "completar_pedido_logged.php";
+        }else{
+          print "finalizar.php";
+        } ?>
+        
+        " class="btn btn-success" >Finalizar compra</a>
         </div>
       </div>
    <?php
