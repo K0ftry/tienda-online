@@ -44,9 +44,38 @@ require 'funciones.php';
     </nav>
 
     <div class="container" id="main">
-        <div class="main-form" >
+        
             <div class="row" >
-                <div class="col-md-12" >
+                <div class="col-md-4">
+                 <div class="main-login">
+            <form action="clientes/login_buying.php" method="POST">
+                <div class="panel panel-default">
+                     <div class="panel-heading">
+                         <h3 class="text-center">INICIAR SESIÓN</h3>
+                     </div>
+                     <div class="panel-body">
+                        <p class="text-center">
+                            <img src="assets/imagenes/logo.png" alt="">
+                        </p>
+                        <div class="form-group">
+                            <label>Correo</label>
+                            <input type="text" class="form-control" name="correo" placeholder="alguien@123.com" 
+                            required>
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" class="form-control" name="clave" placeholder="*********" 
+                            required>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block">INICIAR SESIÓN</button>
+                     </div>
+                 </div>
+                       </form>
+                     </div>
+                </div>
+                <div class="col-md-4"><h4 class="text-center">Inicia sesión ó regístrate</h4></div>
+                <div class="col-md-4" >
                     <fieldset>
                         <legend>Completar datos</legend>
                         <form action="completar_pedido.php" method="POST">
@@ -75,10 +104,7 @@ require 'funciones.php';
                     </fieldset>
                 </div>
             </div>
-        </div>
-      
-      
-
+        
     </div> <!-- /container -->
 
 
