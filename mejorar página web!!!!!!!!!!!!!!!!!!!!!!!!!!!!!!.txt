@@ -3,3 +3,6 @@ Reunión próximo jueves, implementar:
 - Buscador de pedidos
 - Login de usuarios
 - Estado de productos (retirado o no)
+
+-Buscador con combobox, cuadro para ingresar texto y botón buscar, el usuario selecciona si desea buscar por fecha, nombre, etc
+, si está vacío el cuadro de texto, mostrar todos los registros

@@ -92,13 +92,14 @@ require 'funciones.php';
                             <input type="email" class="form-control" name="email" required>
                         </div>
                         <div class="form-group">
+                            <label>Contraseña</label>
+                            <input type="password" name="clave" class="form-control" rows="4" required></input>
+                        </div>
+                        <div class="form-group">
                             <label>Teléfono</label>
                             <input type="text" class="form-control" name="telefono" required>
                         </div>
-                        <div class="form-group">
-                            <label>Comentario</label>
-                            <textarea name="comentario" class="form-control" rows="4"></textarea>
-                        </div>
+                        
                         <button type="submit" class="btn btn-primary btn-block" >Enviar</button>
                         </form>
                     </fieldset>

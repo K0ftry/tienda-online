@@ -17,8 +17,8 @@ class Cliente{
         ));
     }
     public function registrar($_params){
-        $sql = "INSERT INTO `clientes`(`nombres`, `apellidos`, `email`, `telefono`, `comentario`) 
-        VALUES (:nombres,:apellidos,:email,:telefono,:comentario)";
+        $sql = "INSERT INTO `clientes`(`nombres`, `apellidos`, `email`, `clave`, `telefono`) 
+        VALUES (:nombres,:apellidos,:email,:clave,:telefono)";
 
         $resultado = $this->cn->prepare($sql);
 
@@ -26,8 +26,8 @@ class Cliente{
             ":nombres" =>$_params['nombres'],
             ":apellidos" =>$_params['apellidos'],
             ":email" =>$_params['email'],
-            ":telefono" =>$_params['telefono'],
-            ":comentario" =>$_params['comentario']
+            ":clave" =>$_params['clave'],
+            ":telefono" =>$_params['telefono']   
         );
 
         if($resultado->execute($_array))

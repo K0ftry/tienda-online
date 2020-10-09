@@ -68,6 +68,22 @@ if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
         <div class="col-md-12">
           <fieldset>
             <legend>Listado de pedidos</legend>
+            <form action="">
+              <input type="text" name="buscador" placeholder="Buscar...">
+
+              <div class="input-group mb-3">
+                <select class="custom-select" id="inputGroupSelect02">
+                  <option disabled selected>Escoge una opción</option>
+                  <option value="1">Cliente</option>
+                  <option value="2">N° de pedido</option>
+                  <option value="3">Total</option>
+                  <option value="4">Fecha</option>
+                </select>
+                
+            </div>
+
+            <button class="btn btn-primary" type="submit">Buscar</button>
+            </form> 
             
             <table class="table table-bordered">
               <thead>

@@ -15,8 +15,8 @@ if($_SERVER['REQUEST_METHOD'] ==='POST'){
         'nombres' => $_POST['nombres'],
         'apellidos' => $_POST['apellidos'],
         'email' => $_POST['email'],
-        'telefono' => $_POST['telefono'],
-        'comentario' => $_POST['comentario']
+        'clave' => $_POST['clave'],
+        'telefono' => $_POST['telefono']
         );
     
         $cliente_id = $cliente->registrar($_params);
