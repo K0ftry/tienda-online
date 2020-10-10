@@ -63,6 +63,54 @@ class Pedido{
         return false;
     } 
 
+    public function buscarPorCliente($nombres){
+        $sql = "SELECT p.id,nombres,apellidos,email,total,fecha,entregado FROM pedidos p
+        INNER JOIN clientes c ON p.cliente_id = c.id WHERE nombres = :nombres";
+
+        $resultado = $this->cn->prepare($sql);
+
+        $_array = array(
+            ':nombres'=> $nombres
+        );
+
+        if($resultado->execute($_array))
+            return $resultado->fetch();
+
+        return false;
+    } 
+
+    public function buscarPorTotal($total){
+        $sql = "SELECT p.id,nombres,apellidos,email,total,fecha,entregado FROM pedidos p
+        INNER JOIN clientes c ON p.cliente_id = c.id WHERE total = :total";
+
+        $resultado = $this->cn->prepare($sql);
+
+        $_array = array(
+            ':total'=> $total
+        );
+
+        if($resultado->execute($_array))
+            return $resultado->fetch();
+
+        return false;
+    } 
+
+    public function buscarPorFecha($fecha){
+        $sql = "SELECT p.id,nombres,apellidos,email,total,fecha,entregado FROM pedidos p
+        INNER JOIN clientes c ON p.cliente_id = c.id WHERE fecha = :fecha";
+
+        $resultado = $this->cn->prepare($sql);
+
+        $_array = array(
+            ':fecha'=> $fecha
+        );
+
+        if($resultado->execute($_array))
+            return $resultado->fetch();
+
+        return false;
+    } 
+
     public function mostrarUltimos(){
         $sql = "SELECT p.id,nombres,apellidos,email,total,fecha FROM pedidos p
         INNER JOIN clientes c ON p.cliente_id = c.id ORDER BY p.id DESC LIMIT 10";
