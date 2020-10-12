@@ -13,20 +13,34 @@ require 'funciones.php';
     <meta name="author" content="">
 
     <title>Las 4 Eme</title>
+    
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/estilos.css">
+    <link rel="stylesheet" href="assets/css/personalizado.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
 
   </head>
 
   <body>
 
-    <!-- Fixed navbar -->
-    <nav class="navbar navbar-default navbar-fixed-top">
+    
+
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="#">About</a>
+  <a href="#">Services</a>
+  <a href="#">Clients</a>
+  <a href="#">Contact</a>
+</div>
+
+<!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
+       
         <div class="navbar-header">
+          
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
@@ -34,8 +48,18 @@ require 'funciones.php';
             <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand" href="index.php">Las 4 Eme</a>
+          <div class="navbar-text">
+             <!-- Use any element to open the sidenav -->
+          <a onMouseOver="this.style.color='#fff'" onMouseOut="this.style.color='#18bc9c'" onclick="openNav()"><i class="fas fa-arrow-left"> Categorías</i></a>
+          </div>
+           
+          
+          
         </div>
+        
+          
         <div id="navbar" class="navbar-collapse collapse">
+          
           <ul class="nav navbar-nav pull-right">
             <li>
               <a href="carrito.php" class="btn">CARRITO <span class="badge"><?php print cantidadProductos(); ?></span></a>
@@ -60,8 +84,13 @@ require 'funciones.php';
       </div>
     </nav>
 
-    <div class="container" id="main">
-      <div class="row" >
+
+<!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
+<div id="main">
+
+    <div class="container">
+    
+      <div class="row">
         <?php
         require 'vendor/autoload.php';
         $producto = new Tienda\Producto;
@@ -103,6 +132,9 @@ require 'funciones.php';
       
 
     </div> <!-- /container -->
+</div>
+
+    
 
 
     <!-- Bootstrap core JavaScript
@@ -110,6 +142,8 @@ require 'funciones.php';
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/personalizado.js"></script>
+            
 
   </body>
 </html>
