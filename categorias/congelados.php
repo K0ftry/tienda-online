@@ -1,6 +1,6 @@
 <?php
 session_start();
-require 'funciones.php';
+require '../funciones.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,9 +16,9 @@ require 'funciones.php';
     
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/estilos.css">
-    <link rel="stylesheet" href="assets/css/personalizado.css">
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/estilos.css">
+    <link rel="stylesheet" href="../assets/css/personalizado.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
 
   </head>
@@ -29,13 +29,13 @@ require 'funciones.php';
 
 <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <a href="categorias/despensa.php">Despensa</a>
-  <a href="categorias/snacks.php">Snacks</a>
-  <a href="categorias/bebidas.php">Bebidas, Jugos y Aguas</a>
-  <a href="categorias/vinos.php">Vinos y Licores</a>
-  <a href="categorias/lacteos.php">Lácteos</a>
-  <a href="categorias/congelados.php">Congelados</a>
-  <a href="categorias/aseo.php">Aseo y Limpieza</a>
+  <a href="despensa.php">Despensa</a>
+  <a href="snacks.php">Snacks</a>
+  <a href="bebidas.php">Bebidas, Jugos y Aguas</a>
+  <a href="vinos.php">Vinos y Licores</a>
+  <a href="lacteos.php">Lácteos</a>
+  <a href="#" style="color:#fff;">Congelados</a>
+  <a href="aseo.php">Aseo y Limpieza</a>
 </div>
 
 <!-- Fixed navbar -->
@@ -50,7 +50,7 @@ require 'funciones.php';
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.php">Las 4 Eme</a>
+          <a class="navbar-brand" href="../index.php">Las 4 Eme</a>
           <div class="navbar-text">
              <!-- Use any element to open the sidenav -->
           <a onMouseOver="this.style.color='#fff'" onMouseOut="this.style.color='#18bc9c'" onclick="openNav()"><i class="fas fa-arrow-left"> Categorías</i></a>
@@ -79,7 +79,7 @@ require 'funciones.php';
              </ul>
             </li>
               <?php }else{ ?>
-              <a href="clientes/index.php" class="btn" ><i class="far fa-user"></i></a>
+              <a href="../clientes/index.php" class="btn" ><i class="far fa-user"></i></a>
               <?php } ?>
             </li> 
           </ul>
@@ -95,9 +95,9 @@ require 'funciones.php';
     
       <div class="row">
         <?php
-        require 'vendor/autoload.php';
+        require '../vendor/autoload.php';
         $producto = new Tienda\Producto;
-        $info_productos = $producto ->mostrar();
+        $info_productos = $producto ->mostrarCongelados();
         $cantidad = count($info_productos);
         if($cantidad > 0){
           for($x =0; $x<$cantidad; $x++){
@@ -110,17 +110,17 @@ require 'funciones.php';
           </div>
             <div class="panel-body">
             <?php
-             $foto = 'upload/'.$item['foto'];
+             $foto = '../upload/'.$item['foto'];
              if(file_exists($foto)){
             ?>
               <img src="<?php print $foto; ?>" class="img-responsive">
            <?php }else{ ?>
-              <img src="assets/imagenes/not-found.jpg" class="img-responsive">
+              <img src="../assets/imagenes/not-found.jpg" class="img-responsive">
              <?php } ?>
              <h4 class="text-center">Precio: $<?php print $item['precio'] ?></h6>
             </div>
             <div class="panel-footer" >
-                  <a href="carrito.php?id=<?php print $item['id'] ?>" class="btn btn-success btn-block" >
+                  <a href="../carrito.php?id=<?php print $item['id'] ?>" class="btn btn-success btn-block" >
                   <span class="glyphicon glyphicon-shopping-cart" ></span>Comprar
                   </a> 
             </div>
@@ -143,9 +143,9 @@ require 'funciones.php';
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/personalizado.js"></script>
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/bootstrap.min.js"></script>
+    <script src="../assets/js/personalizado.js"></script>
             
 
   </body>

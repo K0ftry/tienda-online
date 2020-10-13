@@ -87,6 +87,91 @@ class Producto{
 
         return false;
     }
+
+    public function mostrarDespensa(){
+
+        $sql="SELECT productos.id, nombre, descripcion, foto, categoria_nombre, precio, fecha, estado FROM productos INNER JOIN categorias ON productos.categoria_id = categorias.id WHERE categorias.categoria_nombre = 'DESPENSA' ORDER BY productos.id DESC
+        ";
+        $resultado = $this->cn->prepare($sql);
+
+        if($resultado->execute())
+            return $resultado->fetchAll();
+
+        return false;
+    }
+
+    public function mostrarSnacks(){
+
+        $sql="SELECT productos.id, nombre, descripcion, foto, categoria_nombre, precio, fecha, estado FROM productos INNER JOIN categorias ON productos.categoria_id = categorias.id WHERE categorias.categoria_nombre = 'SNACKS' ORDER BY productos.id DESC
+        ";
+        $resultado = $this->cn->prepare($sql);
+
+        if($resultado->execute())
+            return $resultado->fetchAll();
+
+        return false;
+    }
+
+    public function mostrarBebidas(){
+
+        $sql="SELECT productos.id, nombre, descripcion, foto, categoria_nombre, precio, fecha, estado FROM productos INNER JOIN categorias ON productos.categoria_id = categorias.id WHERE categorias.categoria_nombre = 'BEBIDAS, JUGOS Y AGUAS' ORDER BY productos.id DESC
+        ";
+        $resultado = $this->cn->prepare($sql);
+
+        if($resultado->execute())
+            return $resultado->fetchAll();
+
+        return false;
+    }
+
+    public function mostrarVinos(){
+
+        $sql="SELECT productos.id, nombre, descripcion, foto, categoria_nombre, precio, fecha, estado FROM productos INNER JOIN categorias ON productos.categoria_id = categorias.id WHERE categorias.categoria_nombre = 'VINOS Y LICORES' ORDER BY productos.id DESC
+        ";
+        $resultado = $this->cn->prepare($sql);
+
+        if($resultado->execute())
+            return $resultado->fetchAll();
+
+        return false;
+    }
+
+    public function mostrarLacteos(){
+
+        $sql="SELECT productos.id, nombre, descripcion, foto, categoria_nombre, precio, fecha, estado FROM productos INNER JOIN categorias ON productos.categoria_id = categorias.id WHERE categorias.categoria_nombre = 'LÁCTEOS' ORDER BY productos.id DESC
+        ";
+        $resultado = $this->cn->prepare($sql);
+
+        if($resultado->execute())
+            return $resultado->fetchAll();
+
+        return false;
+    }
+
+    public function mostrarCongelados(){
+
+        $sql="SELECT productos.id, nombre, descripcion, foto, categoria_nombre, precio, fecha, estado FROM productos INNER JOIN categorias ON productos.categoria_id = categorias.id WHERE categorias.categoria_nombre = 'CONGELADOS' ORDER BY productos.id DESC
+        ";
+        $resultado = $this->cn->prepare($sql);
+
+        if($resultado->execute())
+            return $resultado->fetchAll();
+
+        return false;
+    }
+
+    public function mostrarAseo(){
+
+        $sql="SELECT productos.id, nombre, descripcion, foto, categoria_nombre, precio, fecha, estado FROM productos INNER JOIN categorias ON productos.categoria_id = categorias.id WHERE categorias.categoria_nombre = 'ASEO Y LIMPIEZA' ORDER BY productos.id DESC
+        ";
+        $resultado = $this->cn->prepare($sql);
+
+        if($resultado->execute())
+            return $resultado->fetchAll();
+
+        return false;
+    }
+
     public function mostrarPorId($id){
 
         $sql="SELECT * FROM productos WHERE id =:id";
