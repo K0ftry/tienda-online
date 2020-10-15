@@ -68,7 +68,7 @@ if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
         <div class="col-md-12">
           <fieldset>
             <legend>Listado de pedidos</legend>
-            <form action="ordenar_pedidos.php" method="POST" enctype="multipart/form-data">
+            <form action="" method="POST" enctype="multipart/form-data">
               <input type="text" name="buscador" placeholder="Buscar...">
 
               <div class="input-group mb-3">
@@ -83,6 +83,38 @@ if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
 
             <button class="btn btn-primary" type="submit">Buscar</button>
             </form> 
+
+            <?php  
+              require '../../vendor/autoload.php';
+
+              $producto = new Tienda\Pedido;
+              $text = "";
+              if($_SERVER['REQUEST_METHOD'] ==='POST'){
+                if(isset($_POST['buscador']) and !empty($_POST['buscador']) and isset($_POST['select']) and !empty($_POST['select'])){
+
+                  $text = $_POST['buscador'];
+              
+                  if($_POST['select'] == 1){
+                      $rsp = $producto->buscarPorCliente($text);
+              
+                  }elseif($_POST['select'] == 2){
+                      $rsp = $producto->mostrarPorId($text);
+              
+                  }elseif($_POST['select'] == 3){
+                      $rsp = $producto->buscarPorTotal($text);
+              
+                  }elseif($_POST['select'] == 4){
+                      $rsp = $producto->buscarPorFecha($text);
+                  }
+                }else{
+                  $rsp = $producto->mostrar($text);
+                }
+              }else{
+                $rsp = $producto->mostrar($text);
+              }
+                  
+              
+            ?>
             
             <table class="table table-bordered">
               <thead>
@@ -98,16 +130,16 @@ if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
               </thead>
               <tbody>
                 <?php
-                  require '../../vendor/autoload.php';
-                  $pedido = new Tienda\Pedido;
-                  $info_pedido = $pedido->mostrar();
+                  //require '../../vendor/autoload.php';
+                  //$pedido = new Tienda\Pedido;
+                  //$info_pedido = $pedido->mostrar();
                  
-                  $cantidad = count($info_pedido);
+                  $cantidad = count($rsp);
                   if($cantidad > 0){
                     $c=0;
                     for($x =0; $x < $cantidad; $x++){
                       $c++;
-                      $item = $info_pedido[$x];
+                      $item = $rsp[$x];
                 ?>
 
                 <tr>

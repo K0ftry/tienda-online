@@ -65,7 +65,7 @@ class Pedido{
 
     public function buscarPorCliente($nombres){
         $sql = "SELECT p.id,nombres,apellidos,email,total,fecha,entregado FROM pedidos p
-        INNER JOIN clientes c ON p.cliente_id = c.id WHERE nombres = :nombres";
+        INNER JOIN clientes c ON p.cliente_id = c.id WHERE nombres like '%' :nombres '%'";
 
         $resultado = $this->cn->prepare($sql);
 
@@ -74,14 +74,14 @@ class Pedido{
         );
 
         if($resultado->execute($_array))
-            return $resultado->fetch();
+            return $resultado->fetchAll();
 
         return false;
     } 
 
     public function buscarPorTotal($total){
         $sql = "SELECT p.id,nombres,apellidos,email,total,fecha,entregado FROM pedidos p
-        INNER JOIN clientes c ON p.cliente_id = c.id WHERE total = :total";
+        INNER JOIN clientes c ON p.cliente_id = c.id WHERE total LIKE '%' :total '%'";
 
         $resultado = $this->cn->prepare($sql);
 
@@ -90,14 +90,14 @@ class Pedido{
         );
 
         if($resultado->execute($_array))
-            return $resultado->fetch();
+            return $resultado->fetchAll();
 
         return false;
     } 
 
     public function buscarPorFecha($fecha){
         $sql = "SELECT p.id,nombres,apellidos,email,total,fecha,entregado FROM pedidos p
-        INNER JOIN clientes c ON p.cliente_id = c.id WHERE fecha = :fecha";
+        INNER JOIN clientes c ON p.cliente_id = c.id WHERE fecha LIKE '%' :fecha '%'";
 
         $resultado = $this->cn->prepare($sql);
 
@@ -106,7 +106,7 @@ class Pedido{
         );
 
         if($resultado->execute($_array))
-            return $resultado->fetch();
+            return $resultado->fetchAll();
 
         return false;
     } 
@@ -124,7 +124,7 @@ class Pedido{
     } 
 
     public function mostrarPorId($id){
-        $sql = "SELECT p.id,nombres,apellidos,email,total,fecha FROM pedidos p
+        $sql = "SELECT p.id,nombres,apellidos,email,total,fecha,entregado FROM pedidos p
         INNER JOIN clientes c ON p.cliente_id = c.id WHERE p.id = :id";
 
         $resultado = $this->cn->prepare($sql);
@@ -134,7 +134,7 @@ class Pedido{
         );
 
         if($resultado->execute($_array))
-            return $resultado->fetch();
+            return $resultado->fetchAll();
 
         return false;
     }
