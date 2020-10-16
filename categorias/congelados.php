@@ -137,6 +137,54 @@ require '../funciones.php';
     </div> <!-- /container -->
 </div>
 
+<div class="container" style="bottom: 0; width: 100%">
+  <div class="row">
+    <div class="col">
+      <!-- Footer -->
+<footer class="page-footer font-small teal pt-4">
+<div class="container-fluid text-center text-md-left bg-primary">
+  <div class="row">
+  <hr class="clearfix w-100 d-md-none pb-3">
+    <div class="col-md-6 mt-md-0 mt-3">
+      <h6 class="text-uppercase font-weight-bold">INFORMACIÓN AL CLIENTE</h6>
+        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+        <p>
+          <a href="#!">Términos y condiciones</a>
+        </p>
+        <p>
+          <a href="#!">Politicas de privacidad</a>
+        </p>
+        <p>
+          <a href="#!">Bases</a>
+        </p>
+        <p>
+          <a href="#!">Preguntas Frecuentes</a>
+        </p>
+    </div>
+    
+    <div class="col-md-6 mb-md-0 mb-3">
+      
+        <h6 class="text-uppercase font-weight-bold">CONTACTO</h6>
+        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+        <p>
+          <i class="fas fa-home mr-3"></i> Yungay, Esmeralda 576, CL</p>
+        <p>
+          <i class="fas fa-envelope mr-3"></i> info@las4eme.cl</p>
+        <p>
+          <i class="fas fa-phone mr-3"></i> + 56911223344</p>
+        <p>
+          <i class="fab fa-facebook-f"></i> Las 4 Eme</p>
+    </div>
+  </div>
+</div>
+<div class="footer-copyright text-center py-3">© 2020 Copyright:
+  <a href=""> Las 4 Eme</a>
+</div>
+</footer>
+<!-- Footer -->
+    </div>
+  </div>
+</div>
     
 
 
