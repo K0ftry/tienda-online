@@ -40,7 +40,7 @@
             <div class="row" >
                 <div class="col-md-4">
                  <div class="main-login">
-            <form action="clientes/login_buying.php" method="POST">
+            <form action="login_buying.php" method="POST">
                 <div class="panel panel-default">
                      <div class="panel-heading">
                          <h3 class="text-center">INICIAR SESIÓN</h3>
@@ -63,7 +63,7 @@
                         <button type="submit" class="btn btn-primary btn-block">INICIAR SESIÓN</button>
                      </div>
                  </div>
-                       </form>
+              </form>
                      </div>
                 </div>
                 <div class="col-md-4"><h4 class="text-center">Inicia sesión ó regístrate</h4></div>

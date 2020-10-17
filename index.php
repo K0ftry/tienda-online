@@ -18,7 +18,6 @@ require 'funciones.php';
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/estilos.css">
-    <link rel="stylesheet" href="assets/css/personalizado.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
 
   </head>
@@ -38,53 +37,68 @@ require 'funciones.php';
   <a href="categorias/aseo.php">Aseo y Limpieza</a>
 </div>
 
-<!-- Fixed navbar -->
-<nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-       
-        <div class="navbar-header">
-          
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="index.php">Las 4 Eme</a>
-          <div class="navbar-text">
-             <!-- Use any element to open the sidenav -->
-          <a onMouseOver="this.style.color='#fff'" onMouseOut="this.style.color='#18bc9c'" onclick="openNav()"><i class="fas fa-arrow-left"> Categorías</i></a>
-          </div>
-          
+
+<!-- fixed navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Las 4 Eme</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="#"></a></li>
+        <li><a href="#"></a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categorías <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="categorias/despensa.php">Despensa</a></li>
+            <li><a href="categorias/snacks.php">Snacks</a></li>
+            <li><a href="categorias/bebidas.php">Bebidas, Jugos y Aguas</a></li>
+            <li><a href="categorias/vinos.php">Vinos y Licores</a></li>
+            <li><a href="categorias/lacteos.php">Lácteos</a></li>
+            <li><a href="categorias/congelados.php">Congelados</a></li>
+            <li><a href="categorias/aseo.php">Aseo y Limpieza</a></li>
+          </ul>
+        </li>
+      </ul>
+      <form class="navbar-form navbar-left">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Buscar producto">
         </div>
-        
-       
-          
-        <div id="navbar" class="navbar-collapse collapse"">
-          
-          <ul class="nav navbar-nav pull-right">
-            <li>
-              <a href="carrito.php" class="btn">CARRITO <span class="badge"><?php print cantidadProductos(); ?></span></a>
-            </li> 
-            <li>
+        <button type="submit" class="btn btn-default">Buscar</button>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+           <a href="carrito.php" class="btn">CARRITO <span class="badge"><?php print cantidadProductos(); ?></span></a>
+        </li>
+        <li>
               <?php 
               if(isset($_SESSION['cliente_info']) AND !empty($_SESSION['cliente_info'])){
               ?>
-              <li class="dropdown">
-             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" 
-             aria-haspopup="true" aria-expanded="false"><?php print $_SESSION['cliente_info']['nombre_cliente']; ?><span class="caret"></span></a>
-             <ul class="dropdown-menu">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" 
+              aria-haspopup="true" aria-expanded="false"><?php print $_SESSION['cliente_info']['nombre_cliente']; ?><span class="caret"></span></a>
+              <ul class="dropdown-menu">
                  <li><a href="clientes/cerrar_session.php">Salir</a></li>
-             </ul>
+              </ul>
             </li>
               <?php }else{ ?>
               <a href="clientes/index.php" class="btn" ><i class="far fa-user"></i></a>
               <?php } ?>
-            </li> 
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
+        </li> 
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
 
 
 <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
@@ -191,8 +205,6 @@ require 'funciones.php';
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/personalizado.js"></script>
             
-
   </body>
 </html>
