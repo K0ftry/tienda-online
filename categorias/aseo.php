@@ -57,9 +57,9 @@ require '../funciones.php';
           </ul>
         </li>
       </ul>
-      <form class="navbar-form navbar-left">
+      <form  class="navbar-form navbar-left" action="" method="POST" enctype="multipart/form-data">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Buscar producto">
+          <input type="text" class="form-control" placeholder="Buscar producto" name="buscador">
         </div>
         <button type="submit" class="btn btn-default">Buscar</button>
       </form>
@@ -94,14 +94,28 @@ require '../funciones.php';
     <div class="container">
     
       <div class="row">
-        <?php
-        require '../vendor/autoload.php';
-        $producto = new Tienda\Producto;
-        $info_productos = $producto ->mostrarAseo();
-        $cantidad = count($info_productos);
-        if($cantidad > 0){
-          for($x =0; $x<$cantidad; $x++){
-            $item = $info_productos[$x];
+      <?php  
+              require '../vendor/autoload.php';
+
+              $producto = new Tienda\Producto;
+              $text = "";
+              if($_SERVER['REQUEST_METHOD'] ==='POST'){
+                if(isset($_POST['buscador']) and !empty($_POST['buscador'])){
+
+                  $text = $_POST['buscador'];
+                      $rsp = $producto->buscarProducto($text);
+                }else{
+                  $rsp = $producto->mostrarAseo();
+                }
+              }else{
+                $rsp = $producto->mostrarAseo();
+              }
+                  
+      
+              $cantidad = count($rsp);
+              if($cantidad > 0){
+                for($x =0; $x<$cantidad; $x++){
+                  $item = $rsp[$x];
         ?>
         <div class="col-md-3" >
           <div class="panel panel-default">

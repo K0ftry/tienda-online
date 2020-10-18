@@ -88,6 +88,25 @@ class Producto{
         return false;
     }
 
+    public function buscarProducto($nombre){
+
+        $sql="SELECT productos.id, nombre, descripcion, foto, categoria_nombre, precio, fecha, estado FROM productos 
+        
+        INNER JOIN categorias
+        ON productos.categoria_id = categorias.id WHERE nombre like '%' :nombre '%'
+        ";
+        $resultado = $this->cn->prepare($sql);
+
+        $_array = array(
+            ':nombre'=> $nombre
+        );
+
+        if($resultado->execute($_array))
+            return $resultado->fetchAll();
+
+        return false;
+    }
+
     public function mostrarDespensa(){
 
         $sql="SELECT productos.id, nombre, descripcion, foto, categoria_nombre, precio, fecha, estado FROM productos INNER JOIN categorias ON productos.categoria_id = categorias.id WHERE categorias.categoria_nombre = 'DESPENSA' ORDER BY productos.id DESC

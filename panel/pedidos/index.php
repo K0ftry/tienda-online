@@ -107,10 +107,10 @@ if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
                       $rsp = $producto->buscarPorFecha($text);
                   }
                 }else{
-                  $rsp = $producto->mostrar($text);
+                  $rsp = $producto->mostrar();
                 }
               }else{
-                $rsp = $producto->mostrar($text);
+                $rsp = $producto->mostrar();
               }
                   
               
