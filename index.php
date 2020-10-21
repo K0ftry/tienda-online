@@ -88,6 +88,7 @@ require 'funciones.php';
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" 
               aria-haspopup="true" aria-expanded="false"><?php print $_SESSION['cliente_info']['nombre_cliente']; ?><span class="caret"></span></a>
               <ul class="dropdown-menu">
+                 <li><a href="clientes/perfil/ver.php">Mi Perfil</a></li>
                  <li><a href="clientes/cerrar_session.php">Salir</a></li>
               </ul>
             </li>

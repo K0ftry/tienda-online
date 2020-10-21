@@ -123,11 +123,27 @@ class Pedido{
         return false;
     } 
 
-    public function mostrarPorId($id){
+    public function mostrarPorId($id){ 
         $sql = "SELECT p.id,nombres,apellidos,email,total,fecha,entregado FROM pedidos p
         INNER JOIN clientes c ON p.cliente_id = c.id WHERE p.id = :id";
 
-        $resultado = $this->cn->prepare($sql);
+        $resultado = $this->cn->prepare($sql); 
+
+        $_array = array(
+            ':id'=> $id
+        );
+
+        if($resultado->execute($_array))
+            return $resultado->fetch();
+
+        return false;
+    }
+
+    public function mostrarPorIdCliente($id){ 
+        $sql = "SELECT total,fecha FROM pedidos p
+        INNER JOIN clientes c ON p.cliente_id = c.id WHERE c.id = :id";
+
+        $resultado = $this->cn->prepare($sql); 
 
         $_array = array(
             ':id'=> $id

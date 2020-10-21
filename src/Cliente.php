@@ -51,4 +51,20 @@ class Cliente{
 
         return false;
     }
+
+    public function mostrarPorId($id){ 
+        $sql = "SELECT nombres,apellidos,email,clave,telefono FROM clientes
+         WHERE id = :id";
+
+        $resultado = $this->cn->prepare($sql); 
+
+        $_array = array(
+            ':id'=> $id
+        );
+
+        if($resultado->execute($_array))
+            return $resultado->fetch();
+
+        return false;
+    }
 }

@@ -40,7 +40,7 @@
             <div class="row" >
                 <div class="col-md-4">
                  <div class="main-login">
-            <form action="login_buying.php" method="POST">
+            <form action="login.php" method="POST">
                 <div class="panel panel-default">
                      <div class="panel-heading">
                          <h3 class="text-center">INICIAR SESIÓN</h3>
