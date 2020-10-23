@@ -96,7 +96,7 @@ if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
               
                   if($_POST['select'] == 1){
                       $rsp = $producto->buscarPorCliente($text);
-              
+               
                   }elseif($_POST['select'] == 2){
                       $rsp = $producto->mostrarPorId($text);
               

@@ -8,7 +8,7 @@ if($_SERVER['REQUEST_METHOD'] ==='POST'){
     if($_POST['accion'] ==='Registrar'){
 
        if(empty($_POST['nombre'])) {
-           exit('Completar nombre');
+        exit('Completar nombre');
        } 
        if(empty($_POST['descripcion'])) {
         exit('Completar descripcion');
@@ -26,7 +26,8 @@ if($_SERVER['REQUEST_METHOD'] ==='POST'){
             'foto'=> subirFoto(),
             'precio'=> $_POST['precio'],
             'categoria_id'=> $_POST['categoria_id'],
-            'fecha'=> date('Y-m-d')
+            'fecha'=> date('Y-m-d'),
+            'stock'=> $_POST['stock']
        );
 
        $rpt = $producto->registrar($_params);
@@ -57,6 +58,7 @@ if($_SERVER['REQUEST_METHOD'] ==='POST'){
                  'precio'=> $_POST['precio'],
                  'categoria_id'=> $_POST['categoria_id'],
                  'fecha'=> date('Y-m-d'),
+                 'stock'=> $_POST['stock'],
                  'id'=>$_POST['id']
             );
 

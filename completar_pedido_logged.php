@@ -18,6 +18,8 @@ session_start();
     
         $pedido_id = $pedido -> registrar($_params);
 
+        $producto = new Tienda\Producto;
+
         foreach($_SESSION['carrito'] as $indice => $value){
             $_params = array(
                 "pedido_id" =>$pedido_id,
@@ -26,6 +28,7 @@ session_start();
                 "cantidad" =>$value['cantidad']
             );
             $pedido -> registrarDetalle($_params);
+            $producto -> descontarStock($value['id'],$value['cantidad']);
         }
         $_SESSION['carrito'] = array();
         header('Location: gracias.php');

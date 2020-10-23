@@ -123,6 +123,14 @@ if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Stock</label>
+                            <input type="text" class="form-control" name="stock" placeholder="0" required>
+                        </div>
+                    </div>
+                </div>
                 
                     <input type="submit" name="accion" class="btn btn-primary" value="Registrar">
                     <a href="index.php" class="btn btn-default">Cancelar</a>

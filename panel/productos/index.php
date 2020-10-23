@@ -81,6 +81,7 @@ if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
                   <th>Nombre</th>
                   <th>Categoria</th>
                   <th>Precio</th>
+                  <th>Stock</th>
                   <th class="text-center">Foto</th>
                   <th></th>
                 </tr>
@@ -104,6 +105,7 @@ if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
                   <td><?php print $item['nombre']?></td>
                   <td><?php print $item['categoria_nombre']?></td>
                   <td><?php print $item['precio']?></td>
+                  <td><?php print $item['stock']?></td>
                   <td class="text-center">
                       <?php
                         $foto = '../../upload/'.$item['foto'];
@@ -130,7 +132,7 @@ if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
                   ?>
 
                   <tr>
-                    <td colspan="6">NO HAY REGISTROS</td>
+                    <td colspan="7">NO HAY REGISTROS</td>
                   </tr>
 
                     <?php }?>

@@ -1,8 +1,12 @@
 Reunión próximo jueves, implementar:
 
-- Buscador de pedidos
-- Login de usuarios
-- Estado de productos (retirado o no)
-
--Buscador con combobox, cuadro para ingresar texto y botón buscar, el usuario selecciona si desea buscar por fecha, nombre, etc
-, si está vacío el cuadro de texto, mostrar todos los registros
+- ordenar buscador de pedidos
+- gestion de stock (casi listo, falta: productos sin stock q no se puedan comprar 
+	(mostrar palabra sin stock) y que al comprar no se pueda comprar una cantidad mayor al stock)
+- enviar código y bd a profe luego de implementar stock
+- página de inicio con ofertas (imagen en largo 10% de dsc xej y que al hacer click lleve a las ofertas)
+- al hacer click en productos mostrarlo detallado
+- opción de cancelar pedido (indicar q debe llamar en caso de cancelar pedido)
+- un apartado que hable del supermercado (nosotros o conócenos)
+- que el cliente pueda imprimir el detalle de su compra (comprobante de retiro)
+- buscador de productos dentro de panel (por nombre, categoría e id, ordenar por stock, nombre o categoría)

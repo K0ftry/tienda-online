@@ -144,6 +144,15 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])){
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Stock</label>
+                            <input value="<?php print 
+                            $resultado['stock']?>" type="text" class="form-control" name="stock" placeholder="0" required>
+                        </div>
+                    </div>
+                </div>
                 
                     <input type="submit" class="btn btn-primary" name="accion" value="Actualizar">
                     <a href="index.php" class="btn btn-default">Cancelar</a>
