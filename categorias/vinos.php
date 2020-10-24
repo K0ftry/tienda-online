@@ -66,7 +66,7 @@ require '../funciones.php';
       </form>
       <ul class="nav navbar-nav navbar-right">
         <li>
-           <a href="carrito.php" class="btn">CARRITO <span class="badge"><?php print cantidadProductos(); ?></span></a>
+           <a href="../carrito.php" class="btn">CARRITO <span class="badge"><?php print cantidadProductos(); ?></span></a>
         </li>
         <li>
               <?php 
@@ -135,11 +135,23 @@ require '../funciones.php';
              <?php } ?>
              <h4 class="text-center">Precio: $<?php print $item['precio'] ?></h6>
             </div>
+            <?php 
+            if($item['stock'] == 0){
+              ?>
+              <div class="panel-footer">
+                  <a href="" class="btn btn-white btn-block disabled text-danger">Sin Stock</a>
+              </div>
+             
+
+            <?php 
+            }else{
+              ?>
             <div class="panel-footer" >
                   <a href="../carrito.php?id=<?php print $item['id'] ?>" class="btn btn-success btn-block" >
                   <span class="glyphicon glyphicon-shopping-cart" ></span>Comprar
                   </a> 
             </div>
+            <?php } ?>
           </div>
         </div>
         <?php }

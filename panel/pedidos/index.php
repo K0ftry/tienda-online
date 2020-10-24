@@ -67,11 +67,13 @@ if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
     <div class="row">
         <div class="col-md-12">
           <fieldset>
-            <legend>Listado de pedidos</legend>
-            <form action="" method="POST" enctype="multipart/form-data">
+            <legend style="display: inline;">Listado de pedidos</legend>
+            <form class="navbar-form navbar-left" action="" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
               <input type="text" name="buscador" placeholder="Buscar...">
-
-              <div class="input-group mb-3">
+            </div>
+            <div class="form-group">
+            <div class="input-group mb-3">
                 <select class="custom-select" id="inputGroupSelect02" name="select">
                   <option disabled selected>Escoge una opción</option>
                   <option value="1">Cliente</option>
@@ -80,14 +82,16 @@ if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
                   <option value="4">Fecha</option>
                 </select>  
             </div>
+            </div>
+                <button class="btn btn-primary btn-sm" type="submit">Buscar</button>
 
-            <button class="btn btn-primary" type="submit">Buscar</button>
+           
             </form> 
 
             <?php  
               require '../../vendor/autoload.php';
 
-              $producto = new Tienda\Pedido;
+              $pedido = new Tienda\Pedido;
               $text = "";
               if($_SERVER['REQUEST_METHOD'] ==='POST'){
                 if(isset($_POST['buscador']) and !empty($_POST['buscador']) and isset($_POST['select']) and !empty($_POST['select'])){
@@ -95,22 +99,22 @@ if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
                   $text = $_POST['buscador'];
               
                   if($_POST['select'] == 1){
-                      $rsp = $producto->buscarPorCliente($text);
+                      $rsp = $pedido->buscarPorCliente($text);
                
                   }elseif($_POST['select'] == 2){
-                      $rsp = $producto->mostrarPorId($text);
+                      $rsp = $pedido->mostrarPorId($text);
               
                   }elseif($_POST['select'] == 3){
-                      $rsp = $producto->buscarPorTotal($text);
+                      $rsp = $pedido->buscarPorTotal($text);
               
                   }elseif($_POST['select'] == 4){
-                      $rsp = $producto->buscarPorFecha($text);
+                      $rsp = $pedido->buscarPorFecha($text);
                   }
                 }else{
-                  $rsp = $producto->mostrar();
+                  $rsp = $pedido->mostrar();
                 }
               }else{
-                $rsp = $producto->mostrar();
+                $rsp = $pedido->mostrar();
               }
                   
               
@@ -145,7 +149,7 @@ if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
                 <tr>
                 <form action="../accion_pedidos.php" method="POST" enctype="multipart/form-data" name="form">
                   <td><?php print $c?></td>
-                  <td><?php print $item['nombres'].' '.$item['apellidos']?></td>
+                  <td><?php print $item['nombres'].' '.$item['apellidos']?></td> 
                   <td>
                     <?php print $item['id']?>
                     <input type="hidden" name="id" value="<?php print $item['id'] ?>">

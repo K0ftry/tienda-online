@@ -109,13 +109,13 @@ if(isset($_SESSION['carrito'])){
                          <img src="assets/imagenes/not-found.jpg" width="35">
                      <?php } ?>
                     </td>
-                    <td><?php print $value['precio'] ?>CLP</td>
+                    <td><?php print $value['precio'] ?> CLP</td>
                     <td>
                       <input type="hidden" name="id" value="<?php print $value['id'] ?>" >
                       <input type="text" name="cantidad" class="form-control u-size-100" value="<?php print $value['cantidad'] ?>" >
                     </td>
                     <td>
-                      <?php print $total ?>CLP
+                      <?php print $total ?> CLP
                     </td>
                     <td>
                       <button type="submit" class="btn btn-success btn-xs" >
@@ -141,7 +141,7 @@ if(isset($_SESSION['carrito'])){
               <tfoot>
                 <tr>
                   <td colspan="5" class="text-right">Total</td>
-                  <td><?php print calcularTotal(); ?>CLP</td>
+                  <td><?php print calcularTotal(); ?> CLP</td>
                   <td></td>
                 </tr>
               </tfoot>

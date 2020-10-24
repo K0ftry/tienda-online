@@ -70,7 +70,7 @@ require 'funciones.php';
           </ul>
         </li>
       </ul>
-      <form  class="navbar-form navbar-left" action="" method="POST" enctype="multipart/form-data">
+      <form  class="navbar-form navbar-left" action="" method="POST" enctype="multipart/form-data"> 
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Buscar producto" name="buscador">
         </div>
@@ -148,11 +148,23 @@ require 'funciones.php';
              <?php } ?>
              <h4 class="text-center">Precio: $<?php print $item['precio'] ?></h6>
             </div>
+            <?php 
+            if($item['stock'] == 0){
+              ?>
+              <div class="panel-footer">
+                  <a href="" class="btn btn-white btn-block disabled text-danger">Sin Stock</a>
+              </div>
+             
+
+            <?php 
+            }else{
+              ?>
             <div class="panel-footer" >
                   <a href="carrito.php?id=<?php print $item['id'] ?>" class="btn btn-success btn-block" >
                   <span class="glyphicon glyphicon-shopping-cart" ></span>Comprar
                   </a> 
             </div>
+            <?php } ?>
           </div>
         </div>
         <?php }
