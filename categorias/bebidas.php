@@ -1,4 +1,7 @@
 <?php
+/**
+ * interfaz grafica de categoría bebidas
+ */
 session_start();
 require '../funciones.php';
 ?>

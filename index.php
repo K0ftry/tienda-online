@@ -1,4 +1,7 @@
 <?php
+/**
+ * interfaz que muestra productos
+ */
 session_start();
 require 'funciones.php';
 ?>
@@ -102,7 +105,6 @@ require 'funciones.php';
 </nav>
 
 
-<!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
 <div id="main">
 
     <div class="container">

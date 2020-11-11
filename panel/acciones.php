@@ -1,4 +1,7 @@
 <?php
+/**
+ * interfaz entre vista y controlador
+ */
 require '../vendor/autoload.php';
 
 $producto = new Tienda\Producto;
@@ -89,6 +92,12 @@ if($_SERVER['REQUEST_METHOD'] ==='GET'){
     print 'Error al eliminar producto'; 
 }
 
+/**
+ * subirFoto
+ *
+ * guarda imagenes en el servidor
+ * @return string, file
+ */
 function subirFoto(){
     $carpeta = __DIR__.'/../upload/';
     $archivo = $carpeta.$_FILES['foto']['name'];

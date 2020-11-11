@@ -2,6 +2,9 @@
 
 namespace Tienda;
 
+/**
+ * Categoria
+ */
 class Categoria{
     private $config;
     private $cn = null;
@@ -15,7 +18,14 @@ class Categoria{
             \PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'
         ));
     }
-
+    
+    /**
+     * mostrar
+     *
+     * muestra las categorías registradas
+     * 
+     * @return void
+     */
     public function mostrar(){
 
         $sql="SELECT * FROM categorias";

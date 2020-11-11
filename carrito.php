@@ -1,4 +1,7 @@
 <?php 
+/**
+ * interfaz de carrito
+ */
 
 //activar las sesiones en php
 session_start();

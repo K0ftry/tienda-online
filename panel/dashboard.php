@@ -1,4 +1,7 @@
 <?php
+/**
+ * interfaz gráfica de administrador
+ */
 session_start();
 
 if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))

@@ -1,4 +1,7 @@
 <?php
+/**
+ * interfaz grafica de categoría lacteos
+ */
 session_start();
 require '../funciones.php';
 ?>

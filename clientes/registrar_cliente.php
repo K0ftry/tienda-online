@@ -16,7 +16,7 @@ if($_SERVER['REQUEST_METHOD'] ==='POST'){
         'telefono' => $_POST['telefono']
         );
     
-        $cliente->registrar($_params);
+        $cliente->registrar($_params); 
         
         echo "<script>
                         alert('Cliente registrado');

@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * elimina sesion de carrito
+ */
 session_start();
 
 if(!isset($_GET['id']) OR !is_numeric($_GET['id']))

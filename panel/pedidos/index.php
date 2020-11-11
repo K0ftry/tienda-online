@@ -1,4 +1,7 @@
 <?php
+/**
+ * interfaz que muestra pedidos
+ */
 session_start();
 
 if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))

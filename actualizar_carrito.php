@@ -1,4 +1,7 @@
 <?php
+/**
+ * permite actualizar productos de carrito
+ */
 session_start();
 require 'vendor/autoload.php';
 $producto = new Tienda\Producto;

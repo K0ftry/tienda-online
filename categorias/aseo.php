@@ -1,4 +1,7 @@
 <?php
+/**
+ * interfaz grafica de categoría aseo
+ */
 session_start();
 require '../funciones.php';
 ?>

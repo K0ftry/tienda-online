@@ -1,4 +1,7 @@
 <?php
+/**
+ * registra y loggea clientes
+ */
 session_start();
 require 'funciones.php';
 ?>

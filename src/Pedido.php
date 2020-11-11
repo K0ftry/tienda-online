@@ -2,6 +2,9 @@
 
 namespace Tienda;
 
+/**
+ * Pedido
+ */
 class Pedido{
     
     private $config;
@@ -15,7 +18,14 @@ class Pedido{
         ['clave'],array(
             \PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'
         ));
-    }
+    }    
+    /**
+     * registrar
+     *
+     * registra pedidos despues de hecha la compra
+     * @param  mixed $_params
+     * 
+     */
     public function registrar($_params){ 
         $sql = "INSERT INTO `pedidos`(`cliente_id`, `total`, `fecha`) 
         VALUES (:cliente_id,:total,:fecha)";
@@ -33,6 +43,14 @@ class Pedido{
 
         return false;
     }
+        
+    /**
+     * registrarDetalle
+     *
+     * registra el detalle asociado a cada pedido
+     * @param  mixed $_params
+     * 
+     */
     public function registrarDetalle($_params){
         $sql = "INSERT INTO `detalle_pedidos`(`pedido_id`, `producto_id`, `precio`, `cantidad`) 
         VALUES (:pedido_id,:producto_id,:precio,:cantidad)";
@@ -51,6 +69,13 @@ class Pedido{
 
         return false;
     }
+        
+    /**
+     * mostrar
+     *
+     * muestra datos de cliente y pedido, asociados a pedido específico
+     * @return void
+     */
     public function mostrar(){
         $sql = "SELECT p.id,nombres,apellidos,email,total,fecha,entregado FROM pedidos p
         INNER JOIN clientes c ON p.cliente_id = c.id ORDER BY p.id DESC";
@@ -62,7 +87,14 @@ class Pedido{
 
         return false;
     } 
-
+    
+    /**
+     * buscarPorCliente
+     *
+     * muestra
+     * @param  $nombres
+     * @return array
+     */
     public function buscarPorCliente($nombres){
         $sql = "SELECT p.id,nombres,apellidos,email,total,fecha,entregado FROM pedidos p
         INNER JOIN clientes c ON p.cliente_id = c.id WHERE nombres like '%' :nombres '%'";
@@ -78,7 +110,14 @@ class Pedido{
 
         return false;
     } 
-
+    
+    /**
+     * buscarPorTotal
+     *
+     * busca pedidos en base a su total
+     * @param $total
+     * @return array
+     */
     public function buscarPorTotal($total){
         $sql = "SELECT p.id,nombres,apellidos,email,total,fecha,entregado FROM pedidos p
         INNER JOIN clientes c ON p.cliente_id = c.id WHERE total LIKE '%' :total '%'";
@@ -94,7 +133,14 @@ class Pedido{
 
         return false;
     } 
-
+    
+    /**
+     * buscarPorFecha
+     *
+     * retorna pedidos en base a su fecha
+     * @param $fecha
+     * @return array
+     */
     public function buscarPorFecha($fecha){
         $sql = "SELECT p.id,nombres,apellidos,email,total,fecha,entregado FROM pedidos p
         INNER JOIN clientes c ON p.cliente_id = c.id WHERE fecha LIKE '%' :fecha '%'";
@@ -110,7 +156,13 @@ class Pedido{
 
         return false;
     } 
-
+    
+    /**
+     * mostrarUltimos
+     *
+     * retorna últimos pedidos agregados
+     * @return array
+     */
     public function mostrarUltimos(){
         $sql = "SELECT p.id,nombres,apellidos,email,total,fecha FROM pedidos p
         INNER JOIN clientes c ON p.cliente_id = c.id ORDER BY p.id DESC LIMIT 10";
@@ -122,7 +174,14 @@ class Pedido{
 
         return false;
     } 
-
+    
+    /**
+     * mostrarPorId
+     *
+     * retorna pedido en base a su id
+     * @param  mixed $id
+     * @return array
+     */
     public function mostrarPorId($id){ 
         $sql = "SELECT p.id,nombres,apellidos,email,total,fecha,entregado FROM pedidos p
         INNER JOIN clientes c ON p.cliente_id = c.id WHERE p.id = :id";
@@ -138,7 +197,14 @@ class Pedido{
 
         return false;
     }
-
+    
+    /**
+     * mostrarPorIdCliente
+     *
+     * retorna pedidos en base a id de cliente
+     * @param $id
+     * @return array
+     */
     public function mostrarPorIdCliente($id){ 
         $sql = "SELECT total,fecha FROM pedidos p
         INNER JOIN clientes c ON p.cliente_id = c.id WHERE c.id = :id";
@@ -154,7 +220,14 @@ class Pedido{
 
         return false;
     }
-
+    
+    /**
+     * mostrarDetallePorIdPedido
+     *
+     * retorna detalle en base a id de pedido
+     * @param  mixed $id
+     * @return array
+     */
     public function mostrarDetallePorIdPedido($id){
         $sql = "SELECT dp.id, pr.nombre, dp.precio, dp.cantidad, pr.foto FROM detalle_pedidos dp
         INNER JOIN productos pr ON pr.id = dp.producto_id
@@ -171,7 +244,15 @@ class Pedido{
 
         return false;
     } 
-
+    
+    /**
+     * actualizarEntregado
+     *
+     * cambia estado de pedidos en base de datos
+     * @param  $_id
+     * @param  $_entregado
+     * 
+     */
     public function actualizarEntregado($_id, $_entregado){
 
         if($_entregado == 1){

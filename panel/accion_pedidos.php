@@ -1,4 +1,7 @@
 <?php
+/**
+ * actualiza estado entregado de pedidos
+ */
 
 require '../vendor/autoload.php';
 

@@ -1,4 +1,7 @@
 <?php
+/**
+ * interfaz entre vista y controlador
+ */
 require '../vendor/autoload.php';
 
 $producto = new Tienda\Pedido;

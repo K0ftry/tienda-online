@@ -1,4 +1,7 @@
 <?php
+/**
+ * interfaz mostrada al finalizar compra
+ */
 session_start();
 require 'funciones.php';
 ?>

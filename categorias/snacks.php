@@ -1,4 +1,7 @@
 <?php
+/**
+ * interfaz grafica de categoría snacks
+ */
 session_start();
 require '../funciones.php';
 ?>

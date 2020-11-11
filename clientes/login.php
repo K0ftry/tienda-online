@@ -19,6 +19,7 @@ if($_SERVER['REQUEST_METHOD'] ==='POST'){
 
         header('Location: ../index.php');
     }else{
+        //hacer if para validar administrador
         exit(json_encode(array('estado' => FALSE, 'mensaje'=>'error al iniciar sesion')));
     }
     

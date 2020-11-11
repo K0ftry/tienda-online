@@ -1,4 +1,7 @@
 <?php
+/**
+ * registra clientes, detalles y pedidos
+ */
 
 session_start();
 

@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * login y creación de sesión de usuario
+ */
 if($_SERVER['REQUEST_METHOD'] ==='POST'){
     $nombre_usuario = $_POST['nombre_usuario'];
     $clave = $_POST['clave'];

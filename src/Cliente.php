@@ -2,6 +2,9 @@
 
 namespace Tienda;
 
+/**
+ * Cliente
+ */
 class Cliente{
     
     private $config;
@@ -16,6 +19,15 @@ class Cliente{
             \PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'
         ));
     }
+        
+    /**
+     * registrar
+     * 
+     * registra clientes en la base de datos
+     *
+     * @param  mixed $_params
+     * @return void
+     */
     public function registrar($_params){
         $sql = "INSERT INTO `clientes`(`nombres`, `apellidos`, `email`, `clave`, `telefono`) 
         VALUES (:nombres,:apellidos,:email,:clave,:telefono)";
@@ -31,11 +43,20 @@ class Cliente{
         );
 
         if($resultado->execute($_array))
-            return $this->cn->lastInsertId();
+            return $this->cn->lastInsertId(); 
 
         return false;
     }
-
+    
+    /**
+     * login
+     *
+     * logeo de cliente por correo y contraseña
+     * 
+     * @param  $correo
+     * @param  $clave
+     * @return void
+     */
     public function login($correo, $clave){
 
         $sql="SELECT id,nombres FROM `clientes` WHERE email = :email AND clave = :clave";
@@ -51,7 +72,15 @@ class Cliente{
 
         return false;
     }
-
+    
+    /**
+     * mostrarPorId
+     *
+     * muestra cliente en base a su id
+     * 
+     * @param  $id
+     * @return void
+     */
     public function mostrarPorId($id){ 
         $sql = "SELECT nombres,apellidos,email,clave,telefono FROM clientes
          WHERE id = :id";

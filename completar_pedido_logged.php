@@ -1,4 +1,7 @@
 <?php
+/**
+ * registra pedido y detalle, descuenta stock
+ */
 
 session_start();
 

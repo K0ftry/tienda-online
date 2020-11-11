@@ -1,4 +1,7 @@
 <?php
+/**
+ * interfaz grafica de categoría congelados
+ */
 session_start();
 require '../funciones.php';
 ?>

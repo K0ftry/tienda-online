@@ -1,4 +1,7 @@
 <?php
+/**
+ * interfaz grafica de categoría despensa
+ */
 session_start();
 require '../funciones.php';
 ?>

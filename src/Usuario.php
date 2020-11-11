@@ -2,6 +2,9 @@
 
 namespace Tienda;
 
+/**
+ * Usuario
+ */
 class Usuario{
     
     private $config;
@@ -16,7 +19,15 @@ class Usuario{
             \PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'
         ));
     }
-
+    
+    /**
+     * login
+     *
+     * logeo de usuario en base a su nombre y clave
+     * @param  $nombre
+     * @param  $clave
+     * @return void
+     */
     public function login($nombre, $clave){
 
         $sql="SELECT nombre_usuario FROM `usuarios` WHERE nombre_usuario = :nombre AND clave = :clave";

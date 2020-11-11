@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * agregarProducto
+ *
+ * agrega productos a la sesión de carrito
+ * @param  $resultado
+ * @param  $id
+ * @param  $cantidad
+ * @return void
+ */
 function agregarProducto($resultado, $id, $cantidad = 1){
     $_SESSION['carrito'][$id] = array(
 
@@ -11,6 +20,14 @@ function agregarProducto($resultado, $id, $cantidad = 1){
     );  
 }
 
+/**
+ * actualizarProducto
+ *
+ * actualiza cantidad de productos en carrito
+ * @param  $id
+ * @param  $cantidad
+ * @return void
+ */
 function actualizarProducto($id,$cantidad = FALSE){
 
     if($cantidad){
@@ -21,6 +38,12 @@ function actualizarProducto($id,$cantidad = FALSE){
     
 }
 
+/**
+ * calcularTotal
+ *
+ * calcula costo total de productos
+ * @return integer
+ */
 function calcularTotal(){
     $total = 0;
     if(isset($_SESSION['carrito'])){
@@ -31,6 +54,11 @@ function calcularTotal(){
     return $total;
 }
 
+/**
+ * cantidadProductos
+ *
+ * @return void
+ */
 function cantidadProductos(){
     $cantidad = 0;
     if(isset($_SESSION['carrito'])){
