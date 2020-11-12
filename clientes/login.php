@@ -19,8 +19,22 @@ if($_SERVER['REQUEST_METHOD'] ==='POST'){
 
         header('Location: ../index.php');
     }else{
-        //hacer if para validar administrador
+        //esta sección es para la validación del administrador
+        $usuario = new Tienda\Usuario;
+        $resultado = $usuario-> login($correo, $clave);
+
+    if($resultado){
+        session_start();
+        $_SESSION['usuario_info'] = array(
+            'nombre_usuario'=>$resultado['nombre_usuario'],
+            'estado'=>1
+        );
+
+        header('Location: ../panel/dashboard.php');
+    }else{
         exit(json_encode(array('estado' => FALSE, 'mensaje'=>'error al iniciar sesion')));
+    }
+       
     }
     
 }

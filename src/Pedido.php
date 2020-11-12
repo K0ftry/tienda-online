@@ -176,13 +176,36 @@ class Pedido{
     } 
     
     /**
-     * mostrarPorId
+     * mostrarPorIdVer
      *
-     * retorna pedido en base a su id
+     * retorna pedido en base a su id en pedidos/ver
      * @param  mixed $id
      * @return array
      */
-    public function mostrarPorId($id){ 
+    public function mostrarPorIdVer($id){  
+        $sql = "SELECT p.id,nombres,apellidos,email,total,fecha,entregado FROM pedidos p
+        INNER JOIN clientes c ON p.cliente_id = c.id WHERE p.id = :id";
+
+        $resultado = $this->cn->prepare($sql);  
+
+        $_array = array(
+            ':id'=> $id
+        );
+
+        if($resultado->execute($_array))
+            return $resultado->fetch();
+
+        return false;
+    }
+    
+    /**
+     * mostrarPorIdBuscador
+     *
+     * retorna pedido en base a su id para panel/pedidos
+     * @param  $id
+     * @return void
+     */
+    public function mostrarPorIdBuscador($id){  
         $sql = "SELECT p.id,nombres,apellidos,email,total,fecha,entregado FROM pedidos p
         INNER JOIN clientes c ON p.cliente_id = c.id WHERE p.id = :id";
 

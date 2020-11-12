@@ -34,7 +34,7 @@ session_start();
             $producto -> descontarStock($value['id'],$value['cantidad']);
         }
         $_SESSION['carrito'] = array();
-        header('Location: gracias.php');
+        header('Location: gracias.php?id='.$pedido_id);
     }else{
         print "No logueado o carrito vacío";
     }

@@ -5,7 +5,7 @@
 session_start();
 
 if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
-    header('Location: ../index.php');
+    header('Location: ../../index.php');
 
 require '../../vendor/autoload.php';
 

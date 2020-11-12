@@ -5,7 +5,7 @@
 session_start();
 
 if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
-    header('Location: ../index.php');
+    header('Location: ../../index.php');
 ?>
 
 <!DOCTYPE html>
@@ -105,7 +105,7 @@ if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
                       $rsp = $pedido->buscarPorCliente($text);
                
                   }elseif($_POST['select'] == 2){
-                      $rsp = $pedido->mostrarPorId($text);
+                      $rsp = $pedido->mostrarPorIdBuscador($text);
               
                   }elseif($_POST['select'] == 3){
                       $rsp = $pedido->buscarPorTotal($text);

@@ -161,7 +161,7 @@ require 'funciones.php';
             <?php 
             }else{
               ?>
-            <div class="panel-footer" >
+            <div class="panel-footer" > 
                   <a href="carrito.php?id=<?php print $item['id'] ?>" class="btn btn-success btn-block" >
                   <span class="glyphicon glyphicon-shopping-cart" ></span>Comprar
                   </a> 
@@ -235,6 +235,7 @@ require 'funciones.php';
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
+
             
   </body>
 </html>

@@ -5,7 +5,7 @@
 session_start();
 
 if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
-    header('Location: ../index.php');
+    header('Location: ../../index.php');
 ?>
 
 <!DOCTYPE html>
@@ -65,13 +65,13 @@ if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
 
     <div class="container" id="main">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12"> 
           <fieldset>
               <?php
                 require '../../vendor/autoload.php';
                 $id = $_GET['id'];
                 $pedido = new Tienda\Pedido;
-                $info_pedido = $pedido->mostrarPorId($id); 
+                $info_pedido = $pedido->mostrarPorIdVer($id);  
                 $info_detalle_pedido = $pedido->mostrarDetallePorIdPedido($id);
                 ?>
               <legend>Información de la compra</legend>
