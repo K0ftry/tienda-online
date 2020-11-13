@@ -164,7 +164,7 @@ require 'funciones.php';
             <div class="panel-footer" > 
                   <a href="carrito.php?id=<?php print $item['id'] ?>" class="btn btn-success btn-block" >
                   <span class="glyphicon glyphicon-shopping-cart" ></span>Comprar
-                  </a> 
+                  </a>
             </div>
             <?php } ?>
           </div>
@@ -197,7 +197,7 @@ require 'funciones.php';
           <a href="#!">Politicas de privacidad</a>
         </p>
         <p>
-          <a href="#!">Bases</a>
+          <a href="#!">Quienes somos</a>
         </p>
         <p>
           <a href="#!">Preguntas Frecuentes</a>

@@ -16,12 +16,21 @@ if($_SERVER['REQUEST_METHOD'] ==='POST'){
         'telefono' => $_POST['telefono']
         );
     
-        $cliente->registrar($_params); 
-        
-        echo "<script>
-                        alert('Cliente registrado');
+        //esta validación es para evitar que se registre el mismo correo más de una vez
+        if($cliente->validarSiExisteCorreo($_POST['email'])){
+            echo "<script>
+                        alert('Error este correo ya se encuentra registrado');
                         window.location= 'index.php'
             </script>";
+        }else{
+            $cliente->registrar($_params); 
+        
+        echo "<script>
+                        alert('Cliente registrado exitosamente');
+                        window.location= '../index.php'
+            </script>";
+        }
+              
    
 }else{
     print "Error al registrar cliente";

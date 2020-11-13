@@ -96,4 +96,20 @@ class Cliente{
 
         return false;
     }
+
+    public function validarSiExisteCorreo($correo){ 
+        $sql = "SELECT id FROM clientes
+         WHERE email = :correo";
+
+        $resultado = $this->cn->prepare($sql); 
+
+        $_array = array(
+            ':correo'=> $correo
+        );
+
+        if($resultado->execute($_array))
+            return $resultado->fetch();
+
+        return false;
+    }
 }

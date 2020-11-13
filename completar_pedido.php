@@ -22,7 +22,15 @@ if($_SERVER['REQUEST_METHOD'] ==='POST'){
         'telefono' => $_POST['telefono']
         );
     
-        $cliente_id = $cliente->registrar($_params);
+        //esta validación es para evitar que se registre el mismo correo más de una vez
+        if($cliente->validarSiExisteCorreo($_POST['email'])){
+            echo "<script>
+                        alert('Error este correo ya se encuentra registrado');
+                        window.location= 'finalizar.php'
+            </script>";
+        }else{
+            
+        $cliente_id = $cliente->registrar($_params); 
     
         $pedido = new Tienda\Pedido;
     
@@ -44,9 +52,17 @@ if($_SERVER['REQUEST_METHOD'] ==='POST'){
             $pedido -> registrarDetalle($_params);
         }
         $_SESSION['carrito'] = array();
-        header('Location: gracias.php');
+        header('Location: gracias.php?id='.$pedido_id);
+       
+        }
+
+        
+    }else{
+        print "Error al completar la compra";
     }
    
+}else{
+    print "Error al completar la compra";
 }
 
 

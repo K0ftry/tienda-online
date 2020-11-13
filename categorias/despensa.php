@@ -185,7 +185,7 @@ require '../funciones.php';
           <a href="#!">Politicas de privacidad</a>
         </p>
         <p>
-          <a href="#!">Bases</a>
+          <a href="#!">Quienes somos</a>
         </p>
         <p>
           <a href="#!">Preguntas Frecuentes</a>
