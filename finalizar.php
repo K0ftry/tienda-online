@@ -84,11 +84,11 @@ require 'funciones.php';
                         <form action="completar_pedido.php" method="POST">
                         <div class="form-group">
                             <label>Nombre</label>
-                            <input type="text" class="form-control" name="nombres" required>
+                            <input onkeypress="return check(event)" maxlength="30" type="text" class="form-control" name="nombres" required>
                         </div>
                         <div class="form-group">
                             <label>Apellidos</label>
-                            <input type="text" class="form-control" name="apellidos" required>
+                            <input onkeypress="return check(event)" maxlength="30" type="text" class="form-control" name="apellidos" required>
                         </div>
                         <div class="form-group">
                             <label>Correo</label>
@@ -100,7 +100,7 @@ require 'funciones.php';
                         </div>
                         <div class="form-group">
                             <label>Teléfono</label>
-                            <input type="text" class="form-control" name="telefono" required>
+                            <input type="number" class="form-control" name="telefono" required>
                         </div>
                         
                         <button type="submit" class="btn btn-primary btn-block" >Enviar</button>
@@ -118,6 +118,21 @@ require 'funciones.php';
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
 
+    <script>
+      function check(e) {
+    tecla = (document.all) ? e.keyCode : e.which;
+
+    //Tecla de retroceso para borrar, siempre la permite
+    if (tecla == 8) {
+        return true;
+    }
+
+    // Patron de entrada, en este caso solo acepta numeros y letras
+    patron = /[A-Za-z]/;
+    tecla_final = String.fromCharCode(tecla);
+    return patron.test(tecla_final);
+    }
+    </script>
   </body>
 </html>
 

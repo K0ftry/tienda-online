@@ -63,7 +63,7 @@ require '../funciones.php';
       </ul>
       <form  class="navbar-form navbar-left" action="" method="POST" enctype="multipart/form-data">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Buscar producto" name="buscador">
+          <input onkeypress="return check(event)" maxlength="30" type="text" class="form-control" placeholder="Buscar producto" name="buscador">
         </div>
         <button type="submit" class="btn btn-default">Buscar</button>
       </form>
@@ -225,6 +225,21 @@ require '../funciones.php';
     <script src="../assets/js/jquery.min.js"></script>
     <script src="../assets/js/bootstrap.min.js"></script>
             
+    <script>
+      function check(e) {
+    tecla = (document.all) ? e.keyCode : e.which;
+
+    //Tecla de retroceso para borrar, siempre la permite
+    if (tecla == 8) {
+        return true;
+    }
+
+    // Patron de entrada, en este caso solo acepta numeros y letras
+    patron = /[A-Za-z0-9]/;
+    tecla_final = String.fromCharCode(tecla);
+    return patron.test(tecla_final);
+    }
+    </script>
 
   </body>
 </html>

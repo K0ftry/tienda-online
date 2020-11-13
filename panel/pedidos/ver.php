@@ -74,7 +74,7 @@ if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
                 $info_pedido = $pedido->mostrarPorIdVer($id);  
                 $info_detalle_pedido = $pedido->mostrarDetallePorIdPedido($id);
                 ?>
-              <legend>Información de la compra</legend>
+              <legend>Recibo de entrega</legend>
               <div class="form-group" >
                 <label>Nombre</label>
                 <input value="<?php print $info_pedido['nombres'] ?>" type="text" class="form-control" readonly>
@@ -157,6 +157,19 @@ if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
                 </div>
             </div>
           </fieldset>
+          <br> <br>
+          <div class="col-md-4">
+              <p>Fecha de entrega: ______________________</p>
+            </div>
+            
+            <div class="col-md-4">
+              <p>RUN: ______________________</p>
+            </div>
+            
+            <div class="col-md-4">
+              <p>Firma conforme: ______________________</p>
+            </div>
+
           <div class="pull-left">
              <a href="index.php" class="btn btn-default hidden-print">Cancelar</a>
           </div>

@@ -73,7 +73,7 @@ if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
             <legend style="display: inline;">Listado de pedidos</legend>
             <form class="navbar-form navbar-left" action="" method="POST" enctype="multipart/form-data">
             <div class="form-group">
-              <input type="text" name="buscador" placeholder="Buscar...">
+              <input maxlength="30" type="text" name="buscador" placeholder="Buscar...">
             </div>
             <div class="form-group">
             <div class="input-group mb-3">

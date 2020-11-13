@@ -73,15 +73,15 @@ if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Nombre</label>
-                            <input type="text" class="form-control" name="nombre" required>
+                            <input maxlength="30" type="text" class="form-control" name="nombre" required>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label>Descripción</label>
-                            <textarea class="form-control" name="descripcion" id="" cols="3" required></textarea>
+                            <textarea maxlength="100" class="form-control" name="descripcion" id="" cols="3" required style="resize: none;"></textarea>
                         </div>
                     </div>
                 </div>
@@ -111,7 +111,7 @@ if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label>Foto</label>
                             <input type="file" class="form-control" name="foto" required>
@@ -122,7 +122,7 @@ if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
                     <div class="col-md-3">
                         <div class="form-group">
                             <label>Precio</label>
-                            <input type="text" class="form-control" name="precio" placeholder="0" required>
+                            <input onkeypress="return check(event)" min="0" step="1" type="number" class="form-control" name="precio" placeholder="0" required>
                         </div>
                     </div>
                 </div>
@@ -130,7 +130,7 @@ if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
                     <div class="col-md-3">
                         <div class="form-group">
                             <label>Stock</label>
-                            <input type="text" class="form-control" name="stock" placeholder="0" required>
+                            <input onkeypress="return check(event)" type="number" class="form-control" name="stock" placeholder="0" required min="0" max="1000" maxlength="10" step="1">
                         </div>
                     </div>
                 </div>
@@ -152,6 +152,21 @@ if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="../../assets/js/jquery.min.js"></script>
     <script src="../../assets/js/bootstrap.min.js"></script>
+    <script>
+      function check(e) {
+    tecla = (document.all) ? e.keyCode : e.which;
+
+    //Tecla de retroceso para borrar, siempre la permite
+    if (tecla == 8) {
+        return true;
+    }
+
+    // Patron de entrada, en este caso solo acepta numeros y letras
+    patron = /[0-9]/;
+    tecla_final = String.fromCharCode(tecla);
+    return patron.test(tecla_final);
+    }
+    </script>
 
   </body>
 </html>
