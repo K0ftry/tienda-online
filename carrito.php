@@ -115,7 +115,7 @@ if(isset($_SESSION['carrito'])){
                     <td><?php print $value['precio'] ?> CLP</td>
                     <td>
                       <input type="hidden" name="id" value="<?php print $value['id'] ?>" >
-                      <input type="text" name="cantidad" class="form-control u-size-100" value="<?php print $value['cantidad'] ?>" >
+                      <input type="number" min="0" max="100" name="cantidad" class="form-control u-size-100" value="<?php print $value['cantidad'] ?>" >
                     </td>
                     <td>
                       <?php print $total ?> CLP

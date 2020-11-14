@@ -1,4 +1,7 @@
 <?php
+/**
+ * interfaz que muestra el detalle de un pedido
+ */
 session_start();
 
 if(!isset($_SESSION['cliente_info']) OR empty($_SESSION['cliente_info']))
@@ -20,8 +23,6 @@ if(!isset($_SESSION['cliente_info']) OR empty($_SESSION['cliente_info']))
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../assets/css/estilos.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
-
   </head>
 
   <body>
@@ -39,7 +40,7 @@ if(!isset($_SESSION['cliente_info']) OR empty($_SESSION['cliente_info']))
           <a class="navbar-brand" href="../../index.php">Las 4 Eme</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav pull-right">
+        <ul class="nav navbar-nav pull-right">
             <li class="dropdown">
              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" 
              aria-haspopup="true" aria-expanded="false"><?php print $_SESSION['cliente_info']['nombre_cliente']; ?> <span class="caret"></span></a>
@@ -54,67 +55,73 @@ if(!isset($_SESSION['cliente_info']) OR empty($_SESSION['cliente_info']))
 
     <div class="container" id="main">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12"> 
           <fieldset>
               <?php
                 require '../../vendor/autoload.php';
-                $id = $_SESSION['cliente_info']['id_cliente'];
-                $cliente = new Tienda\Cliente;
+                $id = $_GET['id'];
                 $pedido = new Tienda\Pedido;
-                $info_cliente = $cliente->mostrarPorId($id); 
-                $info_pedidos = $pedido->mostrarPorIdCliente($id);
+                $info_pedido = $pedido->mostrarPorIdVer($id);  
+                $info_detalle_pedido = $pedido->mostrarDetallePorIdPedido($id);
                 ?>
-              <legend>Mi perfil</legend>
+              <legend>Detalle de pedido</legend>
               <div class="form-group" >
                 <label>Nombre</label>
-                <input value="<?php print $info_cliente['nombres'] ?>" type="text" class="form-control" readonly>
+                <input value="<?php print $info_pedido['nombres'] ?>" type="text" class="form-control" readonly>
               </div>
               <div class="form-group" >
                 <label>Apellidos</label>
-                <input value="<?php print $info_cliente['apellidos'] ?>" type="text" class="form-control" readonly>
+                <input value="<?php print $info_pedido['apellidos'] ?>" type="text" class="form-control" readonly>
               </div>
               <div class="form-group" >
                 <label>Email</label>
-                <input value="<?php print $info_cliente['email'] ?>" type="text" class="form-control" readonly>
+                <input value="<?php print $info_pedido['email'] ?>" type="text" class="form-control" readonly>
               </div>
               <div class="form-group" >
-                <label>Clave</label>
-                <input value="<?php print $info_cliente['clave'] ?>" type="password" class="form-control" readonly>
-              </div>
-              <div class="form-group" >
-                <label>Teléfono</label>
-                <input value="<?php print $info_cliente['telefono'] ?>" type="text" class="form-control" readonly>
+                <label>Fecha</label>
+                <input value="<?php print $info_pedido['fecha'] ?>" type="text" class="form-control" readonly>
               </div>
               <hr>
-                 Compras hechas
+                 Productos comprados
               <hr>
               <table class="table table-bordered">
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>Fecha</th>
+                  <th>Nombre</th>
+                  <th>Foto</th>
+                  <th>Precio</th>
+                  <th>Cantidad</th>
                   <th>Total</th>
-                  <th class="text-center">Ver</th>
                 </tr>
               </thead>
               <tbody>
                 <?php
-                  $cantidad = count($info_pedidos);
+                  $cantidad = count($info_detalle_pedido);
                   if($cantidad > 0){
                     $c=0;
                     for($x =0; $x < $cantidad; $x++){
                       $c++;
-                      $item = $info_pedidos[$x];
+                      $item = $info_detalle_pedido[$x];
+                      $total = $item['precio'] * $item['cantidad'];
                 ?>
 
                 <tr>
                   <td><?php print $c?></td>
-                  <td><?php print $item['fecha']?></td>
-                  <td><?php print $item['total']?> CLP</td>
-                  <td class="text-center">
-                    <a href="ver_pedido.php?id=<?php print $item['id']?>" class="btn btn-primary btn-sm">
-                    <span class="glyphicon glyphicon-eye-open"> </span></a>  
-                 </td>
+                  <td><?php print $item['nombre']?></td>
+                  <td>
+                  <?php
+                        $foto = '../../upload/'.$item['foto'];
+                        if(file_exists($foto)){
+                      ?>
+                        <img src="<?php print $foto; ?>" width="35">
+                    <?php }else{ ?>
+                        SIN FOTO
+                    <?php } ?>
+                  </td>
+                  <td><?php print $item['precio']?> CLP</td>
+                  <td><?php print $item['cantidad']?></td>
+                  <td><?php print $total?></td>
                 </tr>
 
                   <?php
@@ -124,7 +131,7 @@ if(!isset($_SESSION['cliente_info']) OR empty($_SESSION['cliente_info']))
                   ?>
 
                   <tr>
-                    <td colspan="4">NO HAY REGISTROS</td>
+                    <td colspan="6">NO HAY REGISTROS</td>
                   </tr>
 
                     <?php }?>
@@ -133,7 +140,20 @@ if(!isset($_SESSION['cliente_info']) OR empty($_SESSION['cliente_info']))
 
               </tbody>
             </table>
+            <div class="col-md-3">
+                <div class="form-group" >
+                    <label>Total compra</label>
+                    <input value="<?php print $info_pedido['total'] ?>" type="text" class="form-control" readonly>
+                </div>
+            </div>
           </fieldset>
+          
+          <div class="pull-left">
+             <a href="ver.php" class="btn btn-default hidden-print">Cancelar</a>
+          </div>
+          <div class="pull-right">
+             <a href="javascript:;" id="btnImprimir" class="btn btn-primary hidden-print">Imprimir</a>
+          </div>
           
         </div>
      </div> 
@@ -145,6 +165,12 @@ if(!isset($_SESSION['cliente_info']) OR empty($_SESSION['cliente_info']))
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="../../assets/js/jquery.min.js"></script>
     <script src="../../assets/js/bootstrap.min.js"></script>
+    <script>
+      $('#btnImprimir').on('click', function(){
+        window.print();
+        return false;
+      })
+    </script>
 
   </body>
 </html>

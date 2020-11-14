@@ -228,9 +228,9 @@ class Pedido{
      * @param $id
      * @return array
      */
-    public function mostrarPorIdCliente($id){ 
-        $sql = "SELECT total,fecha FROM pedidos p
-        INNER JOIN clientes c ON p.cliente_id = c.id WHERE c.id = :id";
+    public function mostrarPorIdCliente($id){  
+        $sql = "SELECT p.id,total,fecha FROM pedidos p
+        INNER JOIN clientes c ON p.cliente_id = c.id WHERE c.id = :id ORDER BY fecha DESC";
 
         $resultado = $this->cn->prepare($sql); 
 

@@ -180,8 +180,7 @@ if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
                   
                   <td class="text-center">
                     <a href="ver.php?id=<?php print $item['id']?>" class="btn btn-primary btn-sm">
-                    <span class="glyphicon glyphicon-eye-open"> </span></a>
-                    
+                    <span class="glyphicon glyphicon-eye-open"> </span></a>  
                  </td>
                            
 
