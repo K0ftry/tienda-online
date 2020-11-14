@@ -1,9 +1,9 @@
 <?php
 /**
- * interfaz grafica de categoría licores
+ * interfaz que muestra productos
  */
 session_start();
-require '../funciones.php';
+require 'funciones.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,8 +19,8 @@ require '../funciones.php';
     
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../assets/css/estilos.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/estilos.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
 
   </head>
@@ -29,8 +29,20 @@ require '../funciones.php';
 
     
 
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="categorias/despensa.php">Despensa</a>
+  <a href="categorias/snacks.php">Snacks</a>
+  <a href="categorias/bebidas.php">Bebidas, Jugos y Aguas</a>
+  <a href="categorias/vinos.php">Vinos y Licores</a>
+  <a href="categorias/lacteos.php">Lácteos</a>
+  <a href="categorias/congelados.php">Congelados</a>
+  <a href="categorias/aseo.php">Aseo y Limpieza</a>
+</div>
+
+
 <!-- fixed navbar -->
-<nav class="navbar navbar-default navbar-fixed-top">
+    <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -40,7 +52,7 @@ require '../funciones.php';
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.php">Las 4 Eme</a>
+      <a class="navbar-brand" href="index.php">Las 4 Eme</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -51,17 +63,17 @@ require '../funciones.php';
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categorías <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="despensa.php">Despensa</a></li>
-            <li><a href="snacks.php">Snacks</a></li>
-            <li><a href="bebidas.php">Bebidas, Jugos y Aguas</a></li>
-            <li><a href="vinos.php">Vinos y Licores</a></li>
-            <li><a href="lacteos.php">Lácteos</a></li>
-            <li><a href="congelados.php">Congelados</a></li>
-            <li><a href="aseo.php">Aseo y Limpieza</a></li>
+            <li><a href="categorias/despensa.php">Despensa</a></li>
+            <li><a href="categorias/snacks.php">Snacks</a></li>
+            <li><a href="categorias/bebidas.php">Bebidas, Jugos y Aguas</a></li>
+            <li><a href="categorias/vinos.php">Vinos y Licores</a></li>
+            <li><a href="categorias/lacteos.php">Lácteos</a></li>
+            <li><a href="categorias/congelados.php">Congelados</a></li>
+            <li><a href="categorias/aseo.php">Aseo y Limpieza</a></li>
           </ul>
         </li>
       </ul>
-      <form  class="navbar-form navbar-left" action="" method="POST" enctype="multipart/form-data">
+      <form  class="navbar-form navbar-left" action="" method="POST" enctype="multipart/form-data"> 
         <div class="form-group">
           <input onkeypress="return check(event)" maxlength="30" type="text" class="form-control" placeholder="Buscar producto" name="buscador">
         </div>
@@ -69,7 +81,7 @@ require '../funciones.php';
       </form>
       <ul class="nav navbar-nav navbar-right">
         <li>
-           <a href="../carrito.php" class="btn">CARRITO <span class="badge"><?php print cantidadProductos(); ?></span></a>
+           <a href="carrito.php" class="btn">CARRITO <span class="badge"><?php print cantidadProductos(); ?></span></a>
         </li>
         <li>
               <?php 
@@ -79,12 +91,12 @@ require '../funciones.php';
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" 
               aria-haspopup="true" aria-expanded="false"><?php print $_SESSION['cliente_info']['nombre_cliente']; ?><span class="caret"></span></a>
               <ul class="dropdown-menu">
-                 <li><a href="../clientes/perfil/ver.php">Mi Perfil</a></li>
-                 <li><a href="../clientes/cerrar_session.php">Salir</a></li>
+                 <li><a href="clientes/perfil/ver.php">Mi Perfil</a></li>
+                 <li><a href="clientes/cerrar_session.php">Salir</a></li>
               </ul>
             </li>
               <?php }else{ ?>
-              <a href="../clientes/index.php" class="btn" ><i class="far fa-user"></i></a>
+              <a href="clientes/index.php" class="btn" ><i class="far fa-user"></i></a>
               <?php } ?>
         </li> 
       </ul>
@@ -93,78 +105,65 @@ require '../funciones.php';
 </nav>
 
 
-<!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
 <div id="main">
 
     <div class="container">
     
       <div class="row">
-      <?php  
-              require '../vendor/autoload.php';
+          <?php
+             require 'vendor/autoload.php';
 
-              $producto = new Tienda\Producto;
-              $text = "";
-              if($_SERVER['REQUEST_METHOD'] ==='POST'){
-                if(isset($_POST['buscador']) and !empty($_POST['buscador'])){
-
-                  $text = $_POST['buscador'];
-                      $rsp = $producto->buscarProducto($text);
-                }else{
-                  $rsp = $producto->mostrarVinos();
-                }
-              }else{
-                $rsp = $producto->mostrarVinos();
+             $producto = new Tienda\Producto;
+              if($_SERVER['REQUEST_METHOD'] ==='GET'){
+                $idproducto = $_GET['id'];
+                $rsp = $producto->mostrarPorId($idproducto);
               }
-                  
-      
-              $cantidad = count($rsp);
-              if($cantidad > 0){
-                for($x =0; $x<$cantidad; $x++){
-                  $item = $rsp[$x];
-        ?>
-        <div class="col-md-3" >
-          <div class="panel panel-default">
-          <div class="panel-heading">
-            <h1 class="text-center nombre-producto" ><?php print $item['nombre'] ?></h1>
-          </div>
-            <div class="panel-body">
-            <?php
-             $foto = '../upload/'.$item['foto'];
-             if(file_exists($foto)){
-            ?>
-              <a href="../descripcion.php?id=<?php print $item['id'] ?>"><img src="<?php print $foto; ?>" class=" img-responsive"></a> 
-           <?php }else{ ?>
-              <img src="../assets/imagenes/not-found.jpg" class="img-responsive">
-             <?php } ?>
-             <h4 class="text-center">Precio: $<?php print $item['precio'] ?></h6>
-            </div>
-            <?php 
-            if($item['stock'] == 0){
-              ?>
-              <div class="panel-footer">
-                  <a href="" class="btn btn-white btn-block disabled text-danger">Sin Stock</a>
-              </div>
              
+          ?>
+             <div class="card mb-3" style="width:100%;">
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                    <div class="panel-body">
+                        <?php
+                        $foto = 'upload/'.$rsp['foto'];
+                        if(file_exists($foto)){
+                        ?>
+                        <img src="<?php print $foto; ?>" class="card-img img-responsive">
+                    <?php }else{ ?>
+                        <img src="assets/imagenes/not-found.jpg" class="card-img img-responsive">
+                        <?php } ?>
+                    </div>
+                    </div>
+                    <div class="col-md-8">
+                    <div class="card-body text-center">
+                      <br>
+                        <h2 class="card-title"><strong><?php print $rsp['nombre'] ?></strong></h2>
+                        <p class="card-text" style="font-size: 20px;"><?php print $rsp['descripcion'] ?></p>
+                        <hr>
+                        <h3><?php print $rsp['precio'] ?> CLP</h3>
+                        <hr>
+                        <?php 
+                            if($rsp['stock'] == 0){
+                            ?>
+                            <div class="panel-footer">
+                                <a href="" class="btn btn-white disabled text-danger">Sin Stock</a>
+                            </div>
 
-            <?php 
-            }else{
-              ?>
-            <div class="panel-footer" >
-                  <a href="../carrito.php?id=<?php print $item['id'] ?>" class="btn btn-success btn-block" >
-                  <span class="glyphicon glyphicon-shopping-cart" ></span>Agregar
-                  </a> 
+                            <?php 
+                            }else{
+                            ?>
+                            <div > 
+                                <a href="carrito.php?id=<?php print $rsp['id'] ?>" class="btn btn-success" >
+                                <span class="glyphicon glyphicon-shopping-cart"></span>Agregar
+                                </a>
+                            </div>
+                        <?php } ?>
+                    </div>
+                    </div>
+                </div>
             </div>
-            <?php } ?>
-          </div>
-        </div>
-        <?php }
-          }else{ ?>
-        NO HAY REGISTROS
-        <?php }?>
-
       </div>
       
-
     </div> <!-- /container -->
 </div>
 
@@ -222,9 +221,9 @@ require '../funciones.php';
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="../assets/js/jquery.min.js"></script>
-    <script src="../assets/js/bootstrap.min.js"></script>
-            
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+
     <script>
       function check(e) {
     tecla = (document.all) ? e.keyCode : e.which;
@@ -241,5 +240,6 @@ require '../funciones.php';
     }
     </script>
 
+            
   </body>
 </html>

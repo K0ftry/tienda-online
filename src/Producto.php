@@ -314,7 +314,7 @@ class Producto{
     public function mostrarPorId($id){
 
         $sql="SELECT * FROM productos WHERE id =:id";
-        $resultado = $this->cn->prepare($sql);
+        $resultado = $this->cn->prepare($sql); 
 
         $_array = array(
             ":id" => $id 

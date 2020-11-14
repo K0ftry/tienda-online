@@ -131,7 +131,7 @@ require '../funciones.php';
              $foto = '../upload/'.$item['foto'];
              if(file_exists($foto)){
             ?>
-              <img src="<?php print $foto; ?>" class="img-responsive">
+              <a href="../descripcion.php?id=<?php print $item['id'] ?>"><img src="<?php print $foto; ?>" class=" img-responsive"></a> 
            <?php }else{ ?>
               <img src="../assets/imagenes/not-found.jpg" class="img-responsive">
              <?php } ?>
@@ -150,7 +150,7 @@ require '../funciones.php';
               ?>
             <div class="panel-footer" >
                   <a href="../carrito.php?id=<?php print $item['id'] ?>" class="btn btn-success btn-block" >
-                  <span class="glyphicon glyphicon-shopping-cart" ></span>Comprar
+                  <span class="glyphicon glyphicon-shopping-cart" ></span>Agregar
                   </a> 
             </div>
             <?php } ?>
