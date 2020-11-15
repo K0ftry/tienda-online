@@ -106,11 +106,50 @@ require 'funciones.php';
 
 
 <div id="main">
-
+    <!-- Carousel -->
+    <div class="row-fluid">
+       <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
+       <div id="myCarousel" class="carousel slide" data-ride="carousel">
+               <!-- Indicators -->
+             <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+             </ol>
+          
+                  <!-- Wrapper for slides -->
+               <div class="carousel-inner">
+                   <div class="item active">
+                     <img src="assets/imagenes/carousel1.png" alt="Oferta 1">
+               </div>
+          
+                <div class="item">
+                   <img src="assets/imagenes/carousel2.png" alt="Oferta 2">
+                </div>
+          
+                <div class="item">
+                     <img src="assets/imagenes/carousel3.png" alt="Oferta 3">
+                 </div>
+                </div>
+          
+                <!-- Left and right controls -->
+                 <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                  <span class="glyphicon glyphicon-chevron-left"></span>
+                   <span class="sr-only">Anterior</span>
+                 </a>
+                 <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                   <span class="glyphicon glyphicon-chevron-right"></span>
+                   <span class="sr-only">Siguiente</span>
+                 </a>
+              </div>
+                          
+         </div>
+         
+      <!-- Carousel -->
+    <br>
     <div class="container">
     
       <div class="row">
-
       <?php  
               require 'vendor/autoload.php';
 

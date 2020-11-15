@@ -157,6 +157,7 @@ require 'funciones.php';
                                 <span class="glyphicon glyphicon-shopping-cart"></span>Agregar
                                 </a>
                             </div>
+                            <br>
                         <?php } ?>
                     </div>
                     </div>
