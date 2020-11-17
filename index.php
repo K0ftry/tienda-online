@@ -105,7 +105,7 @@ require 'funciones.php';
 </nav>
 
 
-<div id="main">
+<div id="main-index">
     <!-- Carousel -->
     <div class="row-fluid">
        <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
@@ -203,7 +203,7 @@ require 'funciones.php';
             <div class="panel-footer" > 
                   <a href="carrito.php?id=<?php print $item['id'] ?>" class="btn btn-success btn-block" >
                   <span class="glyphicon glyphicon-shopping-cart" ></span>Agregar
-                  </a>
+                  </a> 
             </div>
             <?php } ?>
           </div>

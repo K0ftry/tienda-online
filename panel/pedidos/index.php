@@ -65,19 +65,19 @@ if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
       </div>
     </nav>
 
-    <div class="container" id="main">
+    <div class="container" id="main"> 
     
     <div class="row">
         <div class="col-md-12">
           <fieldset>
-            <legend style="display: inline;">Listado de pedidos</legend>
+            <legend>Listado de pedidos</legend>
             <form class="navbar-form navbar-left" action="" method="POST" enctype="multipart/form-data">
             <div class="form-group">
               <input maxlength="30" type="text" name="buscador" placeholder="Buscar...">
             </div>
             <div class="form-group">
             <div class="input-group mb-3">
-                <select class="custom-select" id="inputGroupSelect02" name="select">
+                <select class="custom-select" style="padding-top: 2px; padding-bottom: 2px;" id="inputGroupSelect02" name="select">
                   <option disabled selected>Escoge una opción</option>
                   <option value="1">Cliente</option>
                   <option value="2">N° de pedido</option>
@@ -86,9 +86,7 @@ if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
                 </select>  
             </div>
             </div>
-                <button class="btn btn-primary btn-sm" type="submit">Buscar</button>
-
-           
+                <button class="btn btn-primary" style="padding: 0;" type="submit">Buscar</button>
             </form> 
 
             <?php  

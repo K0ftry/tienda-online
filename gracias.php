@@ -51,6 +51,7 @@ require 'funciones.php';
           <div id="mensaje" class="jumbotron" >
             <p class="text-center">Gracias por su compra</p> 
             <p class="text-center">No olvide mostrar este comprobante al momento de retirar sus productos, puede descargarlo o imprimirlo al final de la página</p>
+            <p class="text-center"><small>Consultas al fono: +56911111111</small></p>
           </div>
            
       </div>

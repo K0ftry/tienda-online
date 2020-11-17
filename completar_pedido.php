@@ -40,7 +40,7 @@ if($_SERVER['REQUEST_METHOD'] ==='POST'){
             'fecha' => date('Y-m-d')
         );
     
-        $pedido_id = $pedido -> registrar($_params);
+        $pedido_id = $pedido -> registrar($_params); 
 
         foreach($_SESSION['carrito'] as $indice => $value){
             $_params = array(
