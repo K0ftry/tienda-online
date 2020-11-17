@@ -68,7 +68,7 @@ if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
     <div class="container" id="main"> 
     
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12"> 
           <fieldset>
             <legend>Listado de pedidos</legend>
             <form class="navbar-form navbar-left" action="" method="POST" enctype="multipart/form-data">
@@ -137,7 +137,7 @@ if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
                 <?php
                   //require '../../vendor/autoload.php';
                   //$pedido = new Tienda\Pedido;
-                  //$info_pedido = $pedido->mostrar();
+                  //$info_pedido = $pedido->mostrar(); 
                  
                   $cantidad = count($rsp);
                   if($cantidad > 0){

@@ -137,12 +137,33 @@ class Producto{
      * muestra productos
      * @return array
      */
-    public function mostrar(){
+    public function mostrar(){ 
 
         $sql="SELECT productos.id, nombre, descripcion, foto, categoria_nombre, precio, fecha, estado, stock FROM productos
         
         INNER JOIN categorias
         ON productos.categoria_id = categorias.id ORDER BY productos.id DESC
+        ";
+        $resultado = $this->cn->prepare($sql);
+
+        if($resultado->execute())
+            return $resultado->fetchAll();
+
+        return false;
+    }
+    
+    /**
+     * mostrarPorMenorStock
+     *
+     * muestra todos los productos ordenados por menor stock
+     * @return array
+     */
+    public function mostrarPorMenorStock(){ 
+
+        $sql="SELECT productos.id, nombre, descripcion, foto, categoria_nombre, precio, fecha, estado, stock FROM productos
+        
+        INNER JOIN categorias
+        ON productos.categoria_id = categorias.id ORDER BY stock ASC
         ";
         $resultado = $this->cn->prepare($sql);
 
@@ -322,6 +343,21 @@ class Producto{
 
         if($resultado->execute($_array))
             return $resultado->fetch();
+
+        return false;
+    }
+
+    public function mostrarPorIdProductoArray($id){
+
+        $sql="SELECT p.id, nombre, categoria_nombre, precio, stock, foto FROM productos p INNER JOIN categorias c ON p.categoria_id = c.id WHERE p.id =:id";
+        $resultado = $this->cn->prepare($sql); 
+
+        $_array = array(
+            ":id" => $id 
+        );
+
+        if($resultado->execute($_array))
+            return $resultado->fetchAll();
 
         return false;
     }

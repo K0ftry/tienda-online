@@ -165,7 +165,7 @@ if(isset($_SESSION['carrito'])){
           print "finalizar.php";
         } ?>
         
-        " class="btn btn-success" >Finalizar compra</a>
+        " class="btn btn-success" >Finalizar compra</a> 
         </div>
       </div>
    <?php

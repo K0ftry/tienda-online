@@ -12,6 +12,7 @@ if($_SERVER['REQUEST_METHOD'] ==='POST'){
 
     if(isset($_SESSION['carrito']) && !empty($_SESSION['carrito'])){
 
+        
         $cliente = new Tienda\Cliente;
 
         $_params = array(

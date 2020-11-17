@@ -77,10 +77,54 @@ if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
         <div class="col-md-12">
           <fieldset>
             <legend>Listado de productos</legend>
+
+            <form class="navbar-form navbar-left" action="" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+              <input maxlength="30" type="text" name="buscador" placeholder="Buscar...">
+            </div>
+            <div class="form-group">
+            <div class="input-group mb-3">
+                <select class="custom-select" style="padding-top: 2px; padding-bottom: 2px;" id="inputGroupSelect02" name="select">
+                  <option disabled selected>Escoge una opción</option>
+                  <option value="1">Nombre de producto</option>
+                  <option value="2">Código de producto</option>
+                </select>  
+            </div>
+            </div>
+                <button class="btn btn-primary" style="padding: 0;" type="submit">Buscar</button>
+            </form> 
+
+            <?php  
+              require '../../vendor/autoload.php';
+
+              $producto = new Tienda\Producto;
+              $text = "";
+              if($_SERVER['REQUEST_METHOD'] ==='POST'){
+                if(isset($_POST['buscador']) and !empty($_POST['buscador']) and isset($_POST['select']) and !empty($_POST['select'])){
+
+                  $text = $_POST['buscador'];
+              
+                  if($_POST['select'] == 1){
+                      $rsp = $producto->buscarProducto($text);
+               
+                  }elseif($_POST['select'] == 2){
+                      $rsp = $producto->mostrarPorIdProductoArray($text);
+                  }
+                }else{
+                  $rsp = $producto->mostrarPorMenorStock();
+                }
+              }else{
+                $rsp = $producto->mostrarPorMenorStock();
+              }
+                  
+              
+            ?>
+
             <table class="table table-bordered">
               <thead>
                 <tr>
                   <th>#</th>
+                  <th>Código</th>
                   <th>Nombre</th>
                   <th>Categoria</th>
                   <th>Precio</th>
@@ -91,20 +135,21 @@ if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
               </thead>
               <tbody>
                 <?php
-                  require '../../vendor/autoload.php';
-                  $producto = new Tienda\Producto;
-                  $info_producto = $producto->mostrar();
+                  //require '../../vendor/autoload.php';
+                  //$producto = new Tienda\Producto;
+                  //$info_producto = $producto->mostrar();
                  
-                  $cantidad = count($info_producto);
+                  $cantidad = count($rsp);
                   if($cantidad > 0){
                     $c=0;
                     for($x =0; $x < $cantidad; $x++){
                       $c++;
-                      $item = $info_producto[$x];
+                      $item = $rsp[$x];
                 ?>
 
                 <tr>
                   <td><?php print $c?></td>
+                  <td><?php print $item['id'] ?></td>
                   <td><?php print $item['nombre']?></td>
                   <td><?php print $item['categoria_nombre']?></td>
                   <td><?php print $item['precio']?></td>
@@ -135,7 +180,7 @@ if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
                   ?>
 
                   <tr>
-                    <td colspan="7">NO HAY REGISTROS</td>
+                    <td colspan="8">NO HAY REGISTROS</td>
                   </tr>
 
                     <?php }?>
