@@ -203,7 +203,7 @@ require 'funciones.php';
             <div class="panel-footer" > 
                   <a href="carrito.php?id=<?php print $item['id'] ?>" class="btn btn-success btn-block" >
                   <span class="glyphicon glyphicon-shopping-cart" ></span>Agregar
-                  </a> 
+                  </a>  
             </div>
             <?php } ?>
           </div>

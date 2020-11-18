@@ -99,7 +99,7 @@ if(isset($_SESSION['carrito'])){
                       $total = $value['precio'] * $value['cantidad'];
                 ?>
                   <tr>
-                    <form action="actualizar_carrito.php" method="POST" >
+                    <form name="myform" action="actualizar_carrito.php" method="POST" >
                       <td><?php print $c ?></td>
                     <td><?php print $value['nombre'] ?></td>
                     <td>
@@ -115,15 +115,17 @@ if(isset($_SESSION['carrito'])){
                     <td><?php print $value['precio'] ?> CLP</td>
                     <td>
                       <input type="hidden" name="id" value="<?php print $value['id'] ?>" >
-                      <input type="number" min="0" max="100" name="cantidad" class="form-control u-size-100" value="<?php print $value['cantidad'] ?>" >
+                      <button onclick="restar(<?php print $value['id'] ?>)" class="btn btn-success btn-xs">-</button>
+                      <input readonly id="<?php print $value['id'] ?>" style="display: inline-block; width: 54px; height: 20px" type="text" min="0" max="100" name="cantidad" class="form-control u-size-100" value="<?php print $value['cantidad'] ?>" >
+                      <button onclick="sumar(<?php print $value['id'] ?>)" class="btn btn-success btn-xs">+</button>
                     </td>
                     <td>
                       <?php print $total ?> CLP
                     </td>
-                    <td>
-                      <button type="submit" class="btn btn-success btn-xs" >
+                    <td class="text-center">
+                     <!-- <button type="submit" class="btn btn-success btn-xs" >
                         <span class="glyphicon glyphicon-refresh" ></span>
-                      </button>
+                      </button> -->
                       <a href="eliminar_carrito.php?id=<?php print $value['id'] ?>" class="btn btn-danger btn-xs" >
                         <span class="glyphicon glyphicon-trash" ></span>
                      </a>
@@ -181,6 +183,27 @@ if(isset($_SESSION['carrito'])){
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
+    <script>
+      function sumar(id){
+        var a = parseInt(document.getElementById(id).value) + 1;
+        document.getElementById(id).value = a;
+        document.myform.submit();
+      }
+    </script>
+
+<script>
+      function restar(id){
+        var a = parseInt(document.getElementById(id).value)
+        if(a > 1){
+          var b = a - 1;
+          document.getElementById(id).value = b;
+        }else{
+          document.getElementById(id).value = a;
+        }
+        
+        document.myform.submit();
+      }
+    </script>
 
   </body>
 </html>
