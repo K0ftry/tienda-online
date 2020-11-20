@@ -144,17 +144,20 @@ require '../funciones.php';
               <div class="panel-footer">
                   <a href="" class="btn btn-white btn-block disabled text-danger">Sin Stock</a>
               </div>
-             
-
             <?php 
             }else{
+              if(isset($_SESSION['carrito']) && array_key_exists($item['id'],$_SESSION['carrito'])){
               ?>
-            <div class="panel-footer" >
-                  <a href="../carrito.php?id=<?php print $item['id'] ?>" class="btn btn-success btn-block" >
+                <div class="panel-footer">
+                    <a href="" class="btn btn-white btn-block disabled text-success">Agregado a carrito</a>
+                </div>
+              <?php }else{ ?>
+            <div class="panel-footer" > 
+                  <a href="carrito_bebidas.php?id=<?php print $item['id'] ?>" class="btn btn-success btn-block" >
                   <span class="glyphicon glyphicon-shopping-cart" ></span>Agregar
-                  </a> 
+                  </a>  
             </div>
-            <?php } ?>
+            <?php } } ?>
           </div>
         </div>
         <?php }
@@ -241,5 +244,15 @@ require '../funciones.php';
     }
     </script>
 
+    <!-- Este script permite mantener posición de scroll luego de recargar -->
+    <script>
+    window.onload=function(){
+    var pos=window.name || 0;
+    window.scrollTo(0,pos);
+    }
+    window.onunload=function(){
+    window.name=self.pageYOffset || (document.documentElement.scrollTop+document.body.scrollTop);
+    }
+    </script>
   </body>
 </html>
