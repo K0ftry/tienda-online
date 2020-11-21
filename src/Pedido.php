@@ -309,4 +309,20 @@ class Pedido{
         }  
     }
 
+    public function buscarPorMes($fecha){
+        //month devuelve el mes. mes(campo en bd) = mes(parámetro recibido)
+        $sql = "SELECT * FROM pedidos WHERE MONTH(fecha)=MONTH(:fecha)";
+
+        $resultado = $this->cn->prepare($sql);
+
+        $_array = array(
+            ':fecha'=> $fecha
+        );
+
+        if($resultado->execute($_array))
+            return $resultado->fetchAll();
+
+        return false;
+    }
+
 }

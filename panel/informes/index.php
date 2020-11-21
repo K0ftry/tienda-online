@@ -70,6 +70,7 @@ if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
     $mes_actual = date("m");
     $ano_actual = date("Y");
     $fecha_actual = date("Y-m-d");
+    $fecha_mes_anterior = date("Y-m-d", strtotime("-1 month"));
     $fecha_actual_1 = date("Y-m-d", strtotime("-1 days"));
     $fecha_actual_2 = date("Y-m-d", strtotime("-2 days"));
     $fecha_actual_3 = date("Y-m-d", strtotime("-3 days"));
@@ -106,8 +107,19 @@ if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
                      print count($array);
                       ?>
                    </td>
-                   <td></td>
-                   <td></td>
+                   <td>
+                   <?php $array = $pedido->buscarPorMes($fecha_actual);
+                     $pedidos_mes = $array;
+                     print count($array);
+                      ?>
+                   </td>
+
+                   <td>
+                   <?php $array = $pedido->buscarPorMes($fecha_mes_anterior);
+                     $pedidos_mes_anterior = $array;
+                     print count($array);
+                      ?>
+                   </td>
                 </tr>
                 <tr>
                     <th>Total vendido</th>
@@ -118,8 +130,24 @@ if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
                     } 
                     print $total;
                     ?></td>
-                    <th></th>
-                    <th></th>
+                    
+                    <td><?php
+                    $total = 0;
+                    foreach($pedidos_mes as $value){
+                      $total = $value['total'] + $total;
+                      $total_mes = $total;
+                    } 
+                    print $total;
+                    ?></td>
+                    
+                    <td><?php
+                    $total = 0;
+                    foreach($pedidos_mes_anterior as $value){
+                      $total = $value['total'] + $total;
+                      $total_mes_anterior = $total;
+                    } 
+                    print $total;
+                    ?></td>
                 </tr>  
               </tbody>
               </table>
@@ -130,10 +158,23 @@ if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
      </div>
      <div class="row">
        <div class="col-md-6">
-         <p>Cantidad vendida en relación al mes anterior: </p>
+         <p>Cantidad vendida en relación al mes anterior: 
+           <?php if($pedidos_mes >= $pedidos_mes_anterior){
+             print "+".round(((((count($pedidos_mes)*100)/count($pedidos_mes_anterior)))-100), 2)."%";
+         }else{
+             print round((((count($pedidos_mes)*100)/count($pedidos_mes_anterior))-100), 2)."%";
+         } 
+         ?></p>
        </div>
        <div class="col-md-6">
-         <p>Total vendido en relación al mes anterior: </p>
+         <p>Total vendido en relación al mes anterior: 
+         <?php if($total_mes >= $total_mes_anterior){
+             print "+".round(((($total_mes*100)/$total_mes_anterior)-100), 2)."%";
+         }else{
+             print round(((($total_mes*100)/$total_mes_anterior)-100), 2)."%";
+         } 
+         ?>
+         </p>
        </div>       
      </div>
      <hr>
