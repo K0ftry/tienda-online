@@ -69,8 +69,18 @@ if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
     $dia_actual = date("d");
     $mes_actual = date("m");
     $ano_actual = date("Y");
-    $fecha_actual = date("d-m-Y");
+    $fecha_actual = date("Y-m-d");
+    $fecha_actual_1 = date("Y-m-d", strtotime("-1 days"));
+    $fecha_actual_2 = date("Y-m-d", strtotime("-2 days"));
+    $fecha_actual_3 = date("Y-m-d", strtotime("-3 days"));
+    $fecha_actual_4 = date("Y-m-d", strtotime("-4 days"));
+    $fecha_actual_5 = date("Y-m-d", strtotime("-5 days"));
+    $fecha_actual_6 = date("Y-m-d", strtotime("-6 days"));
+    $fecha_actual_7 = date("Y-m-d", strtotime("-7 days"));
     $hora_actual = date("G:i:s");
+
+    require '../../vendor/autoload.php';
+              $pedido = new Tienda\Pedido;
     ?>
     <div class="row">
         <div class="col-md-12"> 
@@ -90,13 +100,24 @@ if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
               <tbody>
                 <tr>
                    <th>Cantidad de ventas</th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
+                   <td>
+                     <?php $array = $pedido->buscarPorFecha($fecha_actual);
+                     $pedidos_hoy = $array;
+                     print count($array);
+                      ?>
+                   </td>
+                   <td></td>
+                   <td></td>
                 </tr>
                 <tr>
                     <th>Total vendido</th>
-                    <th></th>
+                    <td><?php
+                    $total = 0;
+                    foreach($pedidos_hoy as $value){
+                      $total = $value['total'] + $total;
+                    } 
+                    print $total;
+                    ?></td>
                     <th></th>
                     <th></th>
                 </tr>  
@@ -113,8 +134,142 @@ if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
        </div>
        <div class="col-md-6">
          <p>Total vendido en relación al mes anterior: </p>
+       </div>       
+     </div>
+     <hr>
+     <div class="row">
+       <h4 class="text-center">Ventas de los últimos 7 días</h4>
+       <div class="col-md-12">
+              <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th><?php print $fecha_actual_1 ?></th>
+                  <th><?php print $fecha_actual_2 ?></th>
+                  <th><?php print $fecha_actual_3 ?></th>
+                  <th><?php print $fecha_actual_4 ?></th>
+                  <th><?php print $fecha_actual_5 ?></th>
+                  <th><?php print $fecha_actual_6 ?></th>
+                  <th><?php print $fecha_actual_7 ?></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                   <th>Cantidad de ventas</th>
+                   <td>
+                     <?php $array = $pedido->buscarPorFecha($fecha_actual_1);
+                     $total_fecha_actual_1 = $array;
+                     print count($array);
+                      ?>
+                   </td>
+                   <td>
+                     <?php $array = $pedido->buscarPorFecha($fecha_actual_2);
+                     $total_fecha_actual_2 = $array;
+                     print count($array);
+                      ?>
+                   </td>
+                   <td>
+                     <?php $array = $pedido->buscarPorFecha($fecha_actual_3);
+                     $total_fecha_actual_3 = $array;
+                     print count($array);
+                      ?>
+                   </td>
+                   <td>
+                     <?php $array = $pedido->buscarPorFecha($fecha_actual_4);
+                     $total_fecha_actual_4 = $array;
+                     print count($array);
+                      ?>
+                   </td>
+                   <td>
+                     <?php $array = $pedido->buscarPorFecha($fecha_actual_5);
+                     $total_fecha_actual_5 = $array;
+                     print count($array);
+                      ?>
+                   </td>
+                   <td>
+                     <?php $array = $pedido->buscarPorFecha($fecha_actual_6);
+                     $total_fecha_actual_6 = $array;
+                     print count($array);
+                      ?>
+                   </td>
+                   <td>
+                     <?php $array = $pedido->buscarPorFecha($fecha_actual_7);
+                     $total_fecha_actual_7 = $array;
+                     print count($array);
+                      ?>
+                   </td>
+                </tr>
+                <tr>
+                    <th>Total vendido</th>
+                    <td><?php
+                    $total = 0;
+                    foreach($total_fecha_actual_1 as $value){
+                      $total = $value['total'] + $total;
+                    } 
+                    print $total;
+                    ?></td>
+
+                    <td><?php
+                    $total = 0;
+                    foreach($total_fecha_actual_2 as $value){
+                      $total = $value['total'] + $total;
+                    } 
+                    print $total;
+                    ?></td>
+
+                    <td><?php
+                    $total = 0;
+                    foreach($total_fecha_actual_3 as $value){
+                      $total = $value['total'] + $total;
+                    } 
+                    print $total;
+                    ?></td>
+
+                    <td><?php
+                    $total = 0;
+                    foreach($total_fecha_actual_4 as $value){
+                      $total = $value['total'] + $total;
+                    } 
+                    print $total;
+                    ?></td>
+
+                    <td><?php
+                    $total = 0;
+                    foreach($total_fecha_actual_5 as $value){
+                      $total = $value['total'] + $total;
+                    } 
+                    print $total;
+                    ?></td>
+
+                    <td><?php
+                    $total = 0;
+                    foreach($total_fecha_actual_6 as $value){
+                      $total = $value['total'] + $total;
+                    } 
+                    print $total;
+                    ?></td>
+
+                    <td><?php
+                    $total = 0;
+                    foreach($total_fecha_actual_7 as $value){
+                      $total = $value['total'] + $total;
+                    } 
+                    print $total;
+                    ?></td>
+                </tr>  
+              </tbody>
+              </table>
+              </div>
+     </div>
+     <hr>
+     <div class="row">
+       <legend class="text-center">Alertas</legend>
+       <div class="col-md-6">
+         <p>Pedidos no entregados: <a href="../pedidos/index.php">ver pedidos</a></p>
        </div>
-              
+       <div class="col-md-6">
+         <p>Productos sin stock: <a href="../productos/index.php">ver productos</a></p>
+       </div>
      </div>
 
      

@@ -306,8 +306,7 @@ class Pedido{
             return true;
 
         return false;
-        }
-
-        
+        }  
     }
+
 }
