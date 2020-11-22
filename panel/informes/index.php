@@ -82,6 +82,7 @@ if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
 
     require '../../vendor/autoload.php';
               $pedido = new Tienda\Pedido;
+              $producto = new Tienda\Producto;
     ?>
     <div class="row">
         <div class="col-md-12"> 
@@ -92,15 +93,15 @@ if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
               <table class="table table-bordered">
               <thead>
                 <tr>
-                  <th></th>
-                  <th>Hoy <?php print $fecha_actual ?></th>
-                  <th>Este mes</th>
-                  <th>Mes anterior</th>
+                  <th class="bg-primary"></th>
+                  <th class="bg-primary text-white">Hoy <?php print $fecha_actual ?></th>
+                  <th class="bg-primary text-white">Este mes</th>
+                  <th class="bg-primary text-white">Mes anterior</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                   <th>Cantidad de ventas</th>
+                   <th class="bg-primary text-white">Cantidad de ventas</th>
                    <td>
                      <?php $array = $pedido->buscarPorFecha($fecha_actual);
                      $pedidos_hoy = $array;
@@ -122,7 +123,7 @@ if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
                    </td>
                 </tr>
                 <tr>
-                    <th>Total vendido</th>
+                    <th class="bg-primary text-white">Total vendido</th>
                     <td><?php
                     $total = 0;
                     foreach($pedidos_hoy as $value){
@@ -184,19 +185,19 @@ if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
               <table class="table table-bordered">
               <thead>
                 <tr>
-                  <th></th>
-                  <th><?php print $fecha_actual_1 ?></th>
-                  <th><?php print $fecha_actual_2 ?></th>
-                  <th><?php print $fecha_actual_3 ?></th>
-                  <th><?php print $fecha_actual_4 ?></th>
-                  <th><?php print $fecha_actual_5 ?></th>
-                  <th><?php print $fecha_actual_6 ?></th>
-                  <th><?php print $fecha_actual_7 ?></th>
+                  <th class="bg-primary text-white"></th>
+                  <th class="bg-primary text-white"><?php print $fecha_actual_1 ?></th>
+                  <th class="bg-primary text-white"><?php print $fecha_actual_2 ?></th>
+                  <th class="bg-primary text-white"><?php print $fecha_actual_3 ?></th>
+                  <th class="bg-primary text-white"><?php print $fecha_actual_4 ?></th>
+                  <th class="bg-primary text-white"><?php print $fecha_actual_5 ?></th>
+                  <th class="bg-primary text-white"><?php print $fecha_actual_6 ?></th>
+                  <th class="bg-primary text-white"><?php print $fecha_actual_7 ?></th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                   <th>Cantidad de ventas</th>
+                   <th class="bg-primary text-white">Cantidad de ventas</th>
                    <td>
                      <?php $array = $pedido->buscarPorFecha($fecha_actual_1);
                      $total_fecha_actual_1 = $array;
@@ -241,7 +242,7 @@ if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
                    </td>
                 </tr>
                 <tr>
-                    <th>Total vendido</th>
+                    <th class="bg-primary text-white">Total vendido</th>
                     <td><?php
                     $total = 0;
                     foreach($total_fecha_actual_1 as $value){
@@ -306,10 +307,32 @@ if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
      <div class="row">
        <legend class="text-center">Alertas</legend>
        <div class="col-md-6">
-         <p>Pedidos no entregados: <a href="../pedidos/index.php">ver pedidos</a></p>
+         <p>Pedidos no entregados: 
+           <?php 
+           /** @var array $entregado */
+           $entregado = $pedido->mostrar();
+           $contador_no_entregados=0;
+           foreach( $entregado as $valor){
+              if($valor['entregado']==0){
+                $contador_no_entregados = $contador_no_entregados + 1;
+              }
+           } 
+           print $contador_no_entregados;
+           ?><a href="../pedidos/index.php"> ver pedidos</a></p>
        </div>
        <div class="col-md-6">
-         <p>Productos sin stock: <a href="../productos/index.php">ver productos</a></p>
+         <p>Productos sin stock: 
+           <?php
+              $stock = $producto ->mostrar();
+              $contador_sin_stock=0;
+              foreach($stock as $res){
+                if($res['stock']==0){
+                  $contador_sin_stock = $contador_sin_stock + 1;
+                }
+              }
+              print $contador_sin_stock;
+           ?>
+         <a href="../productos/index.php"> ver productos</a></p>
        </div>
      </div>
 
