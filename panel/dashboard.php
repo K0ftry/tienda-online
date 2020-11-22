@@ -41,6 +41,9 @@ if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav pull-right">
+          <li>
+              <a href="informes/index.php" class="btn">Informes</a>
+            </li>
             <li>
               <a href="pedidos/index.php" class="btn">Pedidos</a>
             </li>

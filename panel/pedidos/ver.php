@@ -41,6 +41,9 @@ if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav pull-right">
+            <li>
+              <a href="../informes/index.php" class="btn">Informes</a>
+            </li>
             <li class="active">
               <a href="index.php" class="btn">Pedidos</a>
             </li>
@@ -74,27 +77,70 @@ if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
                 $info_pedido = $pedido->mostrarPorIdVer($id);  
                 $info_detalle_pedido = $pedido->mostrarDetallePorIdPedido($id);
                 ?>
-              <legend>Recibo de entrega</legend>
-              <div class="form-group" >
-                <label>Nombre</label>
-                <input value="<?php print $info_pedido['nombres'] ?>" type="text" class="form-control" readonly>
+
+              <div class="row" style="margin-bottom: 10px;;">
+                <div class="col-md-5">
+                  <h5 style="padding: 0; margin:0;">Las 4 EME</h5>
+                  <p style="line-height: 30%; padding: 0; margin:0;"><small style="font-size: 12px; margin:0;" >Panadería, rotisería,</small></p>
+                  <p style="line-height: 90%; padding: 0; margin:0; "><small style="font-size: 12px; margin:0;">supermercado y fábrica de pasteles</small></p>
+                  <p style="line-height: 70%; padding: 0; margin:0; "><small style="font-size: 12px; margin:0;">RUT 11.111.111.1</small></p>
+                </div>
+                <br>
+                <br>
+                <div class="col-md-7">
+                    <h4 style="display: inline;">Comprobante de entrega</h4>
+                </div>
               </div>
-              <div class="form-group" >
-                <label>Apellidos</label>
-                <input value="<?php print $info_pedido['apellidos'] ?>" type="text" class="form-control" readonly>
-              </div>
-              <div class="form-group" >
-                <label>Email</label>
-                <input value="<?php print $info_pedido['email'] ?>" type="text" class="form-control" readonly>
-              </div>
-              <div class="form-group" >
-                <label>Fecha</label>
-                <input value="<?php print $info_pedido['fecha'] ?>" type="text" class="form-control" readonly>
-              </div>
-              <hr>
-                 Productos comprados
-              <hr>
-              <table class="table table-bordered">
+              <div class="col-md-12">
+              <table class="table table-bordered table-sm" >
+                <tr>
+                  <td style=" padding: 0; border-color: #aaa; border-width: 3px; ">
+                  <h5 class="text-center" style="margin:0;">1. Datos de cliente</h5>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding: 0; border-color: #aaa; border-width: 3px;">
+                   <div class="col-md-4 " >
+                    <label>Nombre Completo</label>
+                    <p><?php print $info_pedido['nombres']." ".$info_pedido['apellidos'] ?></p>
+                  </div>
+                  <div class="col-md-4" >
+                    <label>Email</label>
+                    <p><?php print $info_pedido['email'] ?></p>
+                  </div>
+                  <div class="col-md-4" >
+                    <label>Fecha de compra</label>
+                    <p><?php print $info_pedido['fecha'] ?></p>
+                  </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td style=" padding: 0; border-color: #aaa; border-width: 3px; "><h5 class="text-center" style="margin:0;">2. Datos de quien recibe</h5></td>
+                </tr>
+               <tr>
+                  <td style=" padding: 0; border-color: #aaa; border-width: 3px; ">
+                  <div class="col-md-4 " >
+                    <label>Nombre Completo</label>
+                   
+                  </div>
+                  <div class="col-md-4" >
+                    <label>RUN</label>
+                    
+                  </div>
+                  <div class="col-md-4" >
+                    <label>Firma</label>
+                    <p>x</p>
+                  </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding: 0; border-color: #aaa; border-width: 3px; "><h5 class="text-center" style="margin:0;">3. Detalle de pedido</h5>
+                  <p class="text-center" style="margin:3px; line-height:75%; font-size: 12px; ;">Pedido N° <?php print $info_pedido['id'] ?></p>
+                </td>
+                </tr>
+                <tr>
+                  <td style="padding: 0; border-color: #aaa; border-width: 3px;">
+                  <table class="table table-bordered">
               <thead>
                 <tr>
                   <th>#</th>
@@ -145,9 +191,6 @@ if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
                   </tr>
 
                     <?php }?>
-
-                  
-
               </tbody>
             </table>
             <div class="col-md-3">
@@ -156,19 +199,13 @@ if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
                     <input value="<?php print $info_pedido['total'] ?>" type="text" class="form-control" readonly>
                 </div>
             </div>
+                  </td>
+                </tr>
+              
+              </table>
+              </div> 
           </fieldset>
-          <br> <br>
-          <div class="col-md-4">
-              <p>Fecha de entrega: ______________________</p>
-            </div>
-            
-            <div class="col-md-4">
-              <p>RUN: ______________________</p>
-            </div>
-            
-            <div class="col-md-4">
-              <p>Firma conforme: ______________________</p>
-            </div>
+          
 
           <div class="pull-left">
              <a href="index.php" class="btn btn-default hidden-print">Cancelar</a>

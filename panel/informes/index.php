@@ -43,8 +43,11 @@ if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav pull-right">
-            <li class="active">
-              <a href="index.php" class="btn">Pedidos</a>
+          <li class="active">
+              <a href="" class="btn">Informes</a>
+            </li>
+            <li>
+              <a href="../pedidos/index.php" class="btn">Pedidos</a>
             </li>
             <li>
               <a href="../productos/index.php" class="btn">Productos</a>
@@ -335,6 +338,15 @@ if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
          <a href="../productos/index.php"> ver productos</a></p>
        </div>
      </div>
+     <div class="row">
+       <br>
+     <div class="pull-left">
+             <a href="index.php" class="btn btn-default hidden-print">Cancelar</a>
+          </div>
+          <div class="pull-right">
+             <a href="javascript:;" id="btnImprimir" class="btn btn-primary hidden-print">Imprimir</a>
+          </div>
+     </div>
 
      
     
@@ -348,5 +360,11 @@ if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
     <script src="../../assets/js/bootstrap.min.js"></script>
     <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
+    <script>
+      $('#btnImprimir').on('click', function(){
+        window.print();
+        return false;
+      })
+    </script>
   </body>
 </html>
