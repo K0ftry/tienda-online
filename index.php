@@ -104,6 +104,16 @@ require 'funciones.php';
   </div><!-- /.container-fluid -->
 </nav>
 
+                <?php  //redirige index a index página 1
+
+                $productos_x_pagina = 28;
+
+                if(!$_GET){
+                header('Location: index.php?pagina=1');
+                }
+                $iniciar = ($_GET['pagina']-1) * $productos_x_pagina;
+                ?>
+
 
 <div id="main-index">
     <!-- Carousel -->
@@ -153,21 +163,24 @@ require 'funciones.php';
       <?php  
               require 'vendor/autoload.php';
 
+
               $producto = new Tienda\Producto;
               $text = "";
               if($_SERVER['REQUEST_METHOD'] ==='POST'){
                 if(isset($_POST['buscador']) and !empty($_POST['buscador'])){
 
                   $text = $_POST['buscador'];
-                      $rsp = $producto->buscarProducto($text);
+                      $rsp = $producto->buscar28Productos($text);
                 }else{
-                  $rsp = $producto->mostrar();
+                  $rsp = $producto->mostrar28($iniciar, $productos_x_pagina);
                 }
               }else{
-                $rsp = $producto->mostrar();
+                $rsp = $producto->mostrar28($iniciar, $productos_x_pagina);
               }
                   
-      
+              $paginas = count($producto->mostrar()) / $productos_x_pagina;
+              $paginas = ceil($paginas);
+
         $cantidad = count($rsp);
         if($cantidad > 0){
           for($x =0; $x<$cantidad; $x++){
@@ -212,10 +225,25 @@ require 'funciones.php';
           </div>
         </div>
         <?php }
+
           }else{ ?>
         NO HAY REGISTROS
         <?php }?>
-
+      </div>
+      <div class="row text-center">
+         <!-- pagination -->
+         <nav aria-label="Page navigation example">
+          <ul class="pagination">
+            <li class="page-item <?php print $_GET['pagina']<=1 ? 'disabled' : ''; ?>"><a class="page-link " href="
+            index.php?pagina=<?php print $_GET['pagina']-1; ?>
+            ">Anterior</a></li>
+            <?php for($i=0;$i<$paginas;$i++): ?>
+            <li class="page-item <?php print $_GET['pagina']==$i+1 ? 'active' : ''; ?>"><a class="page-link" href="index.php?pagina=<?php print $i+1; ?>"><?php print $i+1; ?></a></li>
+            <?php endfor ?>
+            <li class="page-item <?php print $_GET['pagina']>=$paginas ? 'disabled' : ''; ?>"><a class="page-link" href="index.php?pagina=<?php print $_GET['pagina']+1; ?>">Siguiente</a></li>
+          </ul>
+        </nav>
+        <!-- pagination -->
       </div>
       
     </div> <!-- /container -->

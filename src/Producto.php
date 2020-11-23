@@ -151,6 +151,21 @@ class Producto{
 
         return false;
     }
+
+    public function mostrar28($primer, $segundo){ 
+
+        $primer = (int)$primer;
+        $segundo = (int)$segundo;
+
+        $sql="SELECT * FROM productos LIMIT $primer, $segundo";
+        $resultado = $this->cn->prepare($sql);
+
+
+        if($resultado->execute())
+            return $resultado->fetchAll();
+
+        return false;
+    }
     
     /**
      * mostrarPorMenorStock
@@ -199,6 +214,21 @@ class Producto{
         return false;
     }
     
+    public function buscar28Productos($nombre){
+
+        $sql="SELECT * FROM productos WHERE nombre like '%' :nombre '%' LIMIT 0,28";
+        $resultado = $this->cn->prepare($sql);
+
+        $_array = array(
+            ':nombre'=> $nombre
+        );
+
+        if($resultado->execute($_array))
+            return $resultado->fetchAll();
+
+        return false;
+    }
+
     /**
      * mostrarDespensa
      *
