@@ -105,13 +105,19 @@ require 'funciones.php';
 </nav>
 
                 <?php  //redirige index a index página 1
-
+                require 'vendor/autoload.php';
+                $producto = new Tienda\Producto;
                 $productos_x_pagina = 28;
+                $paginas = count($producto->mostrar()) / $productos_x_pagina;
+                $paginas = ceil($paginas);
 
                 if(!$_GET){
                 header('Location: index.php?pagina=1');
                 }
                 $iniciar = ($_GET['pagina']-1) * $productos_x_pagina;
+                if($_GET['pagina']>$paginas || $_GET['pagina']<=0 ){
+                  header('Location: index.php?pagina=1');
+                }
                 ?>
 
 
@@ -161,10 +167,7 @@ require 'funciones.php';
     
       <div class="row">
       <?php  
-              require 'vendor/autoload.php';
-
-
-              $producto = new Tienda\Producto;
+              
               $text = "";
               if($_SERVER['REQUEST_METHOD'] ==='POST'){
                 if(isset($_POST['buscador']) and !empty($_POST['buscador'])){
@@ -178,8 +181,7 @@ require 'funciones.php';
                 $rsp = $producto->mostrar28($iniciar, $productos_x_pagina);
               }
                   
-              $paginas = count($producto->mostrar()) / $productos_x_pagina;
-              $paginas = ceil($paginas);
+              
 
         $cantidad = count($rsp);
         if($cantidad > 0){
@@ -332,6 +334,15 @@ require 'funciones.php';
     }
     </script>
 
+<!-- este script evita que <a> se pueda clickear luego de desabilitar <li> -->
+     <script>
+       $(function() {
+    $('li.disabled a').click(function(ev) {
+        ev.preventDefault();
+        return false;
+       });
+      });
+     </script>
             
   </body>
 </html>
