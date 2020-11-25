@@ -34,7 +34,7 @@ require 'funciones.php';
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.php">Las 4 Eme</a>
+          <a class="navbar-brand" href="index.php?pagina=1">Las 4 Eme</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav pull-right">

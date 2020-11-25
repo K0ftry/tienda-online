@@ -40,7 +40,7 @@ require '../funciones.php';
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.php">Las 4 Eme</a>
+      <a class="navbar-brand" href="../index.php?pagina=1">Las 4 Eme</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->

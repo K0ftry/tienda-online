@@ -17,7 +17,7 @@ if($_SERVER['REQUEST_METHOD'] ==='POST'){
             'estado'=>1
         );
 
-        header('Location: ../index.php');
+        header('Location: ../index.php?pagina=1');
     }else{
         //esta sección es para la validación del administrador
         $usuario = new Tienda\Usuario;

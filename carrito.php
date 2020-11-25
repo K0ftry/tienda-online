@@ -16,7 +16,7 @@ $producto = new Tienda\Producto;
 $resultado = $producto-> mostrarPorId($id);
 
 if(!$resultado)
-header('Location: index.php');
+header('Location: index.php?pagina=1');
 
 //si el carrito existe
 if(isset($_SESSION['carrito'])){  
@@ -64,7 +64,7 @@ if(isset($_SESSION['carrito'])){
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.php">Las 4 Eme</a>
+          <a class="navbar-brand" href="index.php?pagina=1">Las 4 Eme</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav pull-right">
@@ -157,7 +157,7 @@ if(isset($_SESSION['carrito'])){
    ?>
       <div class="row" >
         <div class="pull-left" >
-          <a href="index.php" class="btn btn-info" >Seguir comprando</a>
+          <a href="index.php?pagina=1" class="btn btn-info" >Seguir comprando</a>
         </div>
         <div class="pull-right" >
         <a href="

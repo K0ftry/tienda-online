@@ -5,7 +5,7 @@
 session_start();
 
 if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
-    header('Location: ../../index.php');
+    header('Location: ../../index.php?pagina=1');
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +37,7 @@ if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.php">Las 4 Eme</a>
+          <a class="navbar-brand" href="#">Las 4 Eme</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav pull-right">

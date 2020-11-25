@@ -27,7 +27,7 @@ if($_SERVER['REQUEST_METHOD'] ==='POST'){
         
         echo "<script>
                         alert('Cliente registrado exitosamente');
-                        window.location= '../index.php'
+                        window.location= '../index.php?pagina=1'
             </script>";
         }
               

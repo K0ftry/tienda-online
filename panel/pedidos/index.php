@@ -4,8 +4,8 @@
  */
 session_start();
 
-if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info']))
-    header('Location: ../../index.php');
+if(!isset($_SESSION['usuario_info']) OR empty($_SESSION['usuario_info'])) 
+    header('Location: ../../index.php?pagina=1');
 ?>
 
 <!DOCTYPE html>

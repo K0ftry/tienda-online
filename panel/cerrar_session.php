@@ -4,4 +4,4 @@
  */
 session_start();
 $_SESSION['usuario_info'] = array();
-header('Location: ../index.php');
+header('Location: ../index.php?pagina=1');

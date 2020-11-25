@@ -40,7 +40,7 @@ require 'funciones.php';
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.php">Las 4 Eme</a>
+          <a class="navbar-brand" href="index.php?pagina=1">Las 4 Eme</a>
         </div>
        
       </div>
@@ -150,7 +150,7 @@ require 'funciones.php';
             </div>
           </fieldset>
           <div class="pull-left">
-             <a href="index.php" class="btn btn-default hidden-print">Regresar</a>
+             <a href="index.php?pagina=1" class="btn btn-default hidden-print">Regresar</a>
           </div>
           <div class="pull-right">
              <a href="javascript:;" id="btnImprimir" class="btn btn-primary hidden-print">Descargar o imprimir</a>

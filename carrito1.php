@@ -16,7 +16,7 @@ $producto = new Tienda\Producto;
 $resultado = $producto-> mostrarPorId($id);
 
 if(!$resultado)
-header('Location: index.php');
+header('Location: index.php?pagina=1');
 
 //si el carrito existe
 if(isset($_SESSION['carrito'])){  
@@ -31,6 +31,6 @@ if(isset($_SESSION['carrito'])){
     agregarProducto($resultado, $id);  
 }
 }
-header('Location: index.php');
+header('Location: index.php?pagina=1');
 ?>
 
